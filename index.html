@@ -51,54 +51,7 @@
         </div>
     </div>
 
-    <!-- HLAVIČKA A NAVIGACE (Sendvičové menu vpravo nahoře) -->
-    <header class="bg-brand-blue text-white shadow-xl sticky top-0 z-50 border-b border-cyan-500/20">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            
-            <div class="flex items-center gap-3">
-                <div class="bg-gradient-to-tr from-cyan-600 to-blue-500 p-2.5 rounded-2xl text-white shadow-lg border border-cyan-400/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="text-xl sm:text-2xl font-black tracking-tight leading-none text-white">PC pro <span class="text-cyan-400">seniory</span></h1>
-                    <p class="text-[11px] text-cyan-200 mt-1 font-medium">Naučím vás s počítačem</p>
-                </div>
-            </div>
-
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center gap-5 font-semibold text-sm">
-                <a href="#uvod" class="hover:text-cyan-300 transition py-2 text-cyan-300 font-bold border-b-2 border-cyan-400">Úvod</a>
-                <a href="#kurz" class="hover:text-cyan-300 transition py-2">Kurz</a>
-                <a href="#slovnicek" class="hover:text-cyan-300 transition py-2">Slovníček</a>
-                <a href="#knihanavstev" class="hover:text-cyan-300 transition py-2">Kniha návštěv</a>
-                <a href="#odkazy" class="hover:text-cyan-300 transition py-2">Odkazy</a>
-                <a href="#bezpecnost" class="text-amber-300 hover:text-amber-200 transition py-2 font-bold">Bezpečnost</a>
-                <a href="#kontakt" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 px-4 py-2 rounded-xl shadow transition font-bold">Kontakt</a>
-            </nav>
-
-            <!-- Funkční sendvičové menu (hamburger) vpravo nahoře -->
-            <button onclick="toggleMobileMenu()" id="menu-btn" class="md:hidden text-white focus:outline-none p-2.5 bg-blue-900/80 rounded-xl border border-blue-700 shadow">
-                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Rozbalovací mobilní menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-blue-950 border-t border-blue-900 px-4 pt-3 pb-5 space-y-2 text-sm shadow-2xl">
-            <a href="#uvod" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl hover:bg-blue-900">🏠 Úvod</a>
-            <a href="#kurz" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl hover:bg-blue-900">📚 Počítačový kurz</a>
-            <a href="#slovnicek" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl hover:bg-blue-900">📖 Slovníček pojmů</a>
-            <a href="#knihanavstev" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl hover:bg-blue-900">✍️ Kniha návštěv</a>
-            <a href="#odkazy" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl hover:bg-blue-900">🔗 Odkazy na weby</a>
-            <a href="#bezpecnost" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl hover:bg-blue-900 text-amber-300 font-bold">⚠️ Bezpečnost</a>
-            <a href="#kontakt" onclick="toggleMobileMenu()" class="block py-2.5 bg-cyan-500 text-slate-950 text-center rounded-xl font-bold mt-2">Kontakt</a>
-        </div>
-    </header>
-
-    <!-- REKLAMNÍ PROSTOR UMÍSTĚNÝ NAHORU (MÍSTO PŮVODNÍHO MODRÉHO PRUHU S IKONOU) -->
+    <!-- REKLAMNÍ PROSTOR ÚPLNĚ NAHOŘE -->
     <section class="max-w-7xl mx-auto px-4 pt-4">
         <div id="ad-space" class="w-full bg-slate-200 border-2 border-dashed border-slate-300 rounded-2xl p-4 text-center text-slate-500 shadow-inner flex flex-col items-center justify-center min-h-[90px]">
             <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-0.5">📢 Reklamní partner</span>
@@ -108,8 +61,56 @@
         </div>
     </section>
 
-    <!-- HLAVNÍ GRAFICKÝ BANNER S PRAROJIČI -->
+    <!-- HLAVNÍ GRAFICKÝ BANNER S PRAROJIČI, V NĚMŽ JE VNOŘENÉ MENU (SENDVIČOVÉ ZÁLOŽKY) -->
     <section id="uvod" class="relative bg-brand-dark overflow-hidden shadow-2xl border-b border-cyan-500/30 mt-4">
+        
+        <!-- Vnořená hlavička s menu přímo v banneru -->
+        <header class="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 via-black/40 to-transparent py-3 px-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                
+                <div class="flex items-center gap-3">
+                    <div class="bg-gradient-to-tr from-cyan-600 to-blue-500 p-2 rounded-xl text-white shadow-lg border border-cyan-400/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-black tracking-tight leading-none text-white drop-shadow">PC pro <span class="text-cyan-400">seniory</span></h1>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-4 font-semibold text-xs bg-black/40 backdrop-blur px-4 py-2 rounded-2xl border border-white/20">
+                    <a href="#uvod" class="text-cyan-300 hover:text-white transition">Úvod</a>
+                    <a href="#kurz" class="text-white hover:text-cyan-300 transition">Kurz</a>
+                    <a href="#slovnicek" class="text-white hover:text-cyan-300 transition">Slovníček</a>
+                    <a href="#knihanavstev" class="text-white hover:text-cyan-300 transition">Kniha návštěv</a>
+                    <a href="#odkazy" class="text-white hover:text-cyan-300 transition">Odkazy</a>
+                    <a href="#bezpecnost" class="text-amber-300 hover:text-amber-200 transition font-bold">Bezpečnost</a>
+                    <a href="#kontakt" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 px-3 py-1.5 rounded-xl shadow transition font-bold">Kontakt</a>
+                </nav>
+
+                <!-- Funkční sendvičové menu (hamburger) vpravo nahoře -->
+                <button onclick="toggleMobileMenu()" id="menu-btn" class="md:hidden text-white focus:outline-none p-2 bg-black/60 backdrop-blur rounded-xl border border-white/30 shadow">
+                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Rozbalovací mobilní menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 backdrop-blur-md border border-slate-800 mt-3 mx-4 p-4 rounded-2xl space-y-2 text-sm shadow-2xl">
+                <a href="#uvod" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">🏠 Úvod</a>
+                <a href="#kurz" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">📚 Počítačový kurz</a>
+                <a href="#slovnicek" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">📖 Slovníček pojmů</a>
+                <a href="#knihanavstev" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">✍️ Kniha návštěv</a>
+                <a href="#odkazy" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">🔗 Odkazy na weby</a>
+                <a href="#bezpecnost" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-amber-300 font-bold">⚠️ Bezpečnost</a>
+                <a href="#kontakt" onclick="toggleMobileMenu()" class="block py-2 bg-cyan-500 text-slate-950 text-center rounded-xl font-bold mt-2">Kontakt</a>
+            </div>
+        </header>
+
+        <!-- Samotný obrázek banneru -->
         <div class="max-w-7xl mx-auto">
             <div class="w-full">
                 <img src="banner-pc.png" alt="Počítačový kurz pro seniory" class="w-full h-auto object-cover max-h-[500px]">
