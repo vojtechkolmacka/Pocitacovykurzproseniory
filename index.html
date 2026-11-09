@@ -65,9 +65,7 @@
             <nav class="hidden md:flex items-center gap-6 font-medium">
                 <a href="#uvod" class="hover:text-cyan-300 transition">Úvod</a>
                 <a href="#kurz" class="hover:text-cyan-300 transition">Počítačový kurz</a>
-                <a href="#mobil" class="hover:text-cyan-300 transition">Smartphone</a>
                 <a href="#slovnicek" class="hover:text-cyan-300 transition">Slovníček</a>
-                <a href="#bezpecnost" class="hover:text-cyan-300 transition text-amber-300 font-bold">Bezpečnost</a>
                 <a href="#kontakt" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-xl shadow transition font-bold">Kontakt</a>
             </nav>
 
@@ -83,9 +81,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-blue-900 border-t border-blue-800 px-4 pt-2 pb-4 space-y-2">
             <a href="#uvod" class="block py-2 hover:bg-blue-800 px-3 rounded">Úvod</a>
             <a href="#kurz" class="block py-2 hover:bg-blue-800 px-3 rounded">Počítačový kurz</a>
-            <a href="#mobil" class="block py-2 hover:bg-blue-800 px-3 rounded">Smartphone a tablet</a>
             <a href="#slovnicek" class="block py-2 hover:bg-blue-800 px-3 rounded">Slovníček</a>
-            <a href="#bezpecnost" class="block py-2 hover:bg-blue-800 px-3 rounded text-amber-300 font-bold">Bezpečnost</a>
             <a href="#kontakt" class="block py-2 bg-cyan-500 text-center rounded font-bold">Kontakt</a>
         </div>
     </header>
@@ -105,10 +101,7 @@
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
                     <a href="#kurz" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition flex items-center gap-3 text-lg">
-                        <span>▶ Začít kurz</span>
-                    </a>
-                    <a href="#slovnicek" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-xl border border-white/20 transition">
-                        📖 Slovníček pojmů
+                        <span>▶ Začít kurz (Kapitola 0)</span>
                     </a>
                 </div>
             </div>
@@ -118,165 +111,93 @@
                         <div class="text-5xl">👵 💻 👴</div>
                         <h3 class="text-xl font-bold text-white">Učíme se bez obav</h3>
                         <p class="text-sm text-slate-300">Žádné složité poučky. Každý krok ukázaný přesně tak, jak jej vidíte na své obrazovce.</p>
-                        <div class="bg-blue-950 p-3 rounded-xl border border-blue-800 text-left text-xs space-y-1 text-cyan-200">
-                            <p><strong>💡 Naše pravidlo:</strong> Pokud něčemu nerozumíte, stačí kliknout na tlačítko <em>„Vysvětli mi to ještě jednodušeji“</em>.</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HLAVNÍ OBSAH / KURZY -->
+    <!-- HLAVNÍ OBSAH / KAPITOLA 0 -->
     <main class="max-w-7xl mx-auto px-4 py-12 space-y-16">
         
-        <!-- Sekce kapitol počítačového kurzu -->
         <section id="kurz" class="space-y-8">
             <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-3xl font-black text-slate-900">Počítačový kurz krok za krokem</h2>
-                <p class="text-slate-600">Vyberte si kapitolu, se kterou chcete začít. Všechny lekce jsou psané srozumitelně pro začátečníky.</p>
+                <span class="text-cyan-600 font-bold tracking-wider uppercase text-sm">Základní modul</span>
+                <h2 class="text-3xl font-black text-slate-900">Kapitola 0: Počítač a jeho součásti</h2>
+                <p class="text-slate-600">Kliknutím na vybranou lekci otevřete podrobný výklad psaný srozumitelně pro začátečníky.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Karta 0 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Lekce 0.1 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">0</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Popis PC a jeho součástí</h3>
-                        <p class="text-sm text-slate-600">Skříň počítače, druhy PC, klávesnice, myš a zapnutí.</p>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg mb-4">0.1</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Druhy počítačů</h3>
+                        <p class="text-sm text-slate-600">Rozdíl mezi stolním PC, notebookem a tabletem. Co se pro vás nejvíc hodí.</p>
                     </div>
-                    <button onclick="openLesson('kapitola-0')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
+                    <button onclick="openLesson('lekce-0-1')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
                     </button>
                 </div>
 
-                <!-- Karta 1 -->
+                <!-- Lekce 0.2 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">1</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Základní obsluha</h3>
-                        <p class="text-sm text-slate-600">Správné sezení, osvětlení, nácvik myši a bezpečné vypnutí.</p>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg mb-4">0.2</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Vnitřnosti počítače</h3>
+                        <p class="text-sm text-slate-600">Procesor, operační paměť a pevný disk (SSD vs. HDD) polopatě.</p>
                     </div>
-                    <button onclick="openLesson('kapitola-1')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
+                    <button onclick="openLesson('lekce-0-2')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
                     </button>
                 </div>
 
-                <!-- Karta 2 -->
+                <!-- Lekce 0.3 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">2</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Seznámení s OS Windows</h3>
-                        <p class="text-sm text-slate-600">Prostředí Windows, práce s okny, přetahování a Malování.</p>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg mb-4">0.3</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Periferie a konektory</h3>
+                        <p class="text-sm text-slate-600">Kam co zapojit. Rozdíl mezi klasickým USB-A a moderním oboustranným USB-C.</p>
                     </div>
-                    <button onclick="openLesson('kapitola-2')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
+                    <button onclick="openLesson('lekce-0-3')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
                     </button>
                 </div>
 
-                <!-- Karta 3 -->
+                <!-- Lekce 0.4 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">3</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Složky a soubory</h3>
-                        <p class="text-sm text-slate-600">Pořádek v datech, tvorba složek, mazání a práce s košem.</p>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg mb-4">0.4</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Česká klávesnice</h3>
+                        <p class="text-sm text-slate-600">Abeceda, mazání, psaní háčků a čárek přes horní číselnou řadu a přepínání jazyků.</p>
                     </div>
-                    <button onclick="openLesson('kapitola-3')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
+                    <button onclick="openLesson('lekce-0-4')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
                     </button>
                 </div>
 
-                <!-- Karta 4 -->
+                <!-- Lekce 0.5 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">4</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Ukládání a přenos dat</h3>
-                        <p class="text-sm text-slate-600">Jak používat USB flash disk (flešku) a přenášet soubory.</p>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg mb-4">0.5</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Myš a touchpad</h3>
+                        <p class="text-sm text-slate-600">Správný úchop, klikání a co dělat, když vám na podložce dojde místo.</p>
                     </div>
-                    <button onclick="openLesson('kapitola-4')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
+                    <button onclick="openLesson('lekce-0-5')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
                     </button>
                 </div>
 
-                <!-- Karta 5 -->
+                <!-- Lekce 0.6 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">5</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Psaní textu na PC</h3>
-                        <p class="text-sm text-slate-600">Práce v textovém editoru, psaní dopisů a úprava písma.</p>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg mb-4">0.6</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Údržba a péče</h3>
+                        <p class="text-sm text-slate-600">Šetrné čištění obrazovky podle pokynů výrobce a správné použití notebooku.</p>
                     </div>
-                    <button onclick="openLesson('kapitola-5')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
+                    <button onclick="openLesson('lekce-0-6')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
                     </button>
-                </div>
-
-                <!-- Karta 6 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">6</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Tisk dokumentů</h3>
-                        <p class="text-sm text-slate-600">Jak přenést text z obrazovky na reálný papír přes tiskárnu.</p>
-                    </div>
-                    <button onclick="openLesson('kapitola-6')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
-                    </button>
-                </div>
-
-                <!-- Karta 7 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4">7</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Internet a e-mail</h3>
-                        <p class="text-sm text-slate-600">Prohlížeče, zakládání schránky a posílání zpráv.</p>
-                    </div>
-                    <button onclick="openLesson('kapitola-7')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít kapitolu →
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEKCI SMARTPHONE A TABLET -->
-        <section id="mobil" class="bg-cyan-900 text-white rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
-            <div class="max-w-3xl space-y-6 relative z-10">
-                <span class="bg-cyan-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase">Kapitola 8</span>
-                <h2 class="text-3xl font-black">Smartphone a tablet (Android & iPhone)</h2>
-                <p class="text-cyan-100 leading-relaxed">
-                    Máte chytrý telefon a nevíte, jak na dotykový displej, WhatsApp, focení nebo zvětšení písma? Podrobné návody pro Android (Samsung, Xiaomi) i iPhone.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <button onclick="openLesson('mobil-zaklady')" class="bg-white text-cyan-900 font-bold px-6 py-3 rounded-xl hover:bg-cyan-50 transition shadow">
-                        📱 Ovládání a dotykový displej
-                    </button>
-                    <button onclick="openLesson('mobil-whatsapp')" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold px-6 py-3 rounded-xl transition shadow">
-                        💬 WhatsApp a videohovory
-                    </button>
-                    <button onclick="openLesson('mobil-pismo')" class="bg-blue-800 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl transition shadow">
-                        🔍 Zvětšení písma
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- BEZPEČNOST NA INTERNETU -->
-        <section id="bezpecnost" class="bg-amber-50 border-2 border-amber-200 rounded-3xl p-8 shadow-sm space-y-6">
-            <div class="flex items-center gap-4">
-                <div class="bg-amber-500 text-white p-3 rounded-2xl text-2xl">⚠️</div>
-                <div>
-                    <h2 class="text-2xl font-black text-slate-900">Bezpečnost na Internetu bez obav</h2>
-                    <p class="text-slate-700 text-sm">Jak bezpečně nakupovat a rozpoznat falešné SMS od podvodníků.</p>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-white p-5 rounded-xl border border-amber-200 space-y-2">
-                    <h3 class="font-bold text-slate-900">🚨 Pozor na podvodné e-maily a SMS</h3>
-                    <p class="text-xs text-slate-600">Jak odhalit falešné zprávy o balíčcích či blokovaných účtech a proč neklikat na odkazy.</p>
-                    <button onclick="openLesson('bezpecnost-sms')" class="text-xs text-amber-700 font-bold hover:underline pt-2 block">Přečíst podrobný návod →</button>
-                </div>
-                <div class="bg-white p-5 rounded-xl border border-amber-200 space-y-2">
-                    <h3 class="font-bold text-slate-900">🛒 Bezpečné nákupy online</h3>
-                    <p class="text-xs text-slate-600">Jak bezpečně objednat zboží a nenaletět podvodným e-shopům bez historie.</p>
-                    <button onclick="openLesson('bezpecnost-nakupy')" class="text-xs text-amber-700 font-bold hover:underline pt-2 block">Přečíst podrobný návod →</button>
                 </div>
             </div>
         </section>
@@ -286,78 +207,50 @@
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h2 class="text-2xl font-black text-slate-900">Slovníček pojmů „po lopatě“</h2>
-                    <p class="text-slate-600 text-sm">Nerozumíte nějakému slovu? Vyhledejte si ho zde.</p>
+                    <p class="text-slate-600 text-sm">Základní výrazy z Kapitoly 0 vysvětlené jednoduše.</p>
                 </div>
-                <input type="text" id="glossary-search" placeholder="Hledat pojem (např. Wi-Fi, myš)..." onkeyup="filterGlossary()" class="px-4 py-2 rounded-xl border border-slate-300 w-full md:w-72 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <input type="text" id="glossary-search" placeholder="Hledat pojem..." onkeyup="filterGlossary()" class="px-4 py-2 rounded-xl border border-slate-300 w-full md:w-72 focus:outline-none focus:ring-2 focus:ring-cyan-500">
             </div>
 
             <div id="glossary-list" class="grid md:grid-cols-2 gap-4">
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Aplikace (Appka)</h3>
-                    <p class="text-sm text-slate-700">Malý program v chytrém telefonu, který plní určitý úkol – například WhatsApp na volání nebo Fotoaparát.</p>
+                    <h3 class="font-bold text-blue-900 text-lg">Procesor (CPU)</h3>
+                    <p class="text-sm text-slate-700">Hlavní výpočetní jednotka neboli „mozek“ počítače, který zpracovává vaše pokyny.</p>
                 </div>
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Android</h3>
-                    <p class="text-sm text-slate-700">Operační systém pro telefony značek Samsung, Xiaomi, Motorola a další.</p>
+                    <h3 class="font-bold text-blue-900 text-lg">Operační paměť (RAM)</h3>
+                    <p class="text-sm text-slate-700">Dočasná pracovní paměť sloužící programům, které právě používáte. Po vypnutí se vymaže.</p>
                 </div>
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Dvojklik</h3>
-                    <p class="text-sm text-slate-700">Dvě rychlá ťuknutí levým tlačítkem myši těsně za sebou pro otevření souboru.</p>
+                    <h3 class="font-bold text-blue-900 text-lg">SSD disk</h3>
+                    <p class="text-sm text-slate-700">Moderní typ pevného disku bez pohyblivých částí, který zajišťuje bleskový start počítače.</p>
                 </div>
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">E-mailová adresa</h3>
-                    <p class="text-sm text-slate-700">Vaše osobní digitální adresa (např. jmeno@seznam.cz), kam vám lidé posílají zprávy.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Fleška (USB disk)</h3>
-                    <p class="text-sm text-slate-700">Malá přenosná paměť do kapsy pro přenos fotek a dokumentů mezi počítači.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Ikona</h3>
-                    <p class="text-sm text-slate-700">Malý obrázek na ploše počítače nebo telefonu, který otevírá program.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Internet</h3>
-                    <p class="text-sm text-slate-700">Celosvětová síť pro vyhledávání informací, zpráv a komunikaci.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Kurzor</h3>
-                    <p class="text-sm text-slate-700">Malá šipka na obrazovce, která kopíruje pohyb vaší myši po stole.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Prohlížeč</h3>
-                    <p class="text-sm text-slate-700">Program (např. Chrome) pro otevírání internetových stránek.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Složka</h3>
-                    <p class="text-sm text-slate-700">Digitální obálka nebo šanon, kam si ukládáte soubory a fotky pro pořádek.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Wi-Fi</h3>
-                    <p class="text-sm text-slate-700">Bezdrátový přenos internetu vzduchem bez nutnosti tahat kabely.</p>
+                    <h3 class="font-bold text-blue-900 text-lg">USB-C</h3>
+                    <p class="text-sm text-slate-700">Moderní, menší a oválný konektor, který je oboustranný – nezáleží na tom, jak ho otočíte.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- MODÁLNÍ OKNO PRO VÝUKOVÝ OBSAH S FUNKCí "VYSVĚTLI MI TO JEŠTĚ JEDNODUŠEJI" -->
+    <!-- MODÁLNÍ OKNO PRO VÝUKOVÝ OBSAH S FUNKCÍ "VYSVĚTLI MI TO JEŠTĚ JEDNODUŠEJI" -->
     <div id="lesson-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 space-y-6 shadow-2xl relative">
             <button onclick="closeLesson()" class="absolute top-6 right-6 bg-slate-100 hover:bg-slate-200 text-slate-700 w-10 h-10 rounded-full font-bold flex items-center justify-center text-xl">✕</button>
             
             <div id="modal-content" class="space-y-4 text-slate-700">
-                <!-- Sem se dynamicky načte obsah kapitoly -->
+                <!-- Sem se dynamicky načte obsah lekce -->
             </div>
 
-            <!-- SPECIÁLNÍ TLAČÍTKO POŽADOVANÉ UŽIVATELEM -->
+            <!-- TLAČÍTKO "VYSVĚTLI MI TO JEŠTĚ JEDNODUŠEJI" -->
             <div class="bg-cyan-50 border border-cyan-200 p-4 rounded-2xl space-y-3">
                 <button onclick="toggleSimplerExplanation()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-xl shadow transition flex items-center justify-center gap-2">
                     <span>💡 Vysvětli mi to ještě jednodušeji</span>
                 </button>
                 <div id="simpler-explanation-box" class="hidden bg-white p-4 rounded-xl border border-cyan-300 text-sm text-slate-700 space-y-2">
-                    <h4 class="font-bold text-cyan-900">Zjednodušený výklad pro úplné začátečníky:</h4>
-                    <p id="simpler-text">Tady bude ještě polopatičtější vysvětlení...</p>
+                    <h4 class="font-bold text-cyan-900">Zjednodušený výklad:</h4>
+                    <p id="simpler-text"></p>
                 </div>
             </div>
 
@@ -375,227 +268,4 @@
                 <p class="text-sm text-slate-400">Trpělivá škola moderních technologií. Vše vysvětlujeme klidně, srozumitelně a s úsměvem.</p>
             </div>
             <div class="space-y-3">
-                <h3 class="text-lg font-bold text-white">Rychlé odkazy</h3>
-                <ul class="text-sm text-slate-400 space-y-1">
-                    <li><a href="#uvod" class="hover:text-white">Úvodní stránka</a></li>
-                    <li><a href="#kurz" class="hover:text-white">Seznam kapitol</a></li>
-                    <li><a href="#slovnicek" class="hover:text-white">Slovníček pojmů</a></li>
-                    <li><a href="admin.html" class="text-cyan-400 hover:underline">PWA Administrace pro správu webu</a></li>
-                </ul>
-            </div>
-            <div class="space-y-3">
-                <h3 class="text-lg font-bold text-white">Kontakt & Podpora</h3>
-                <p class="text-sm text-slate-400">Máte dotaz ke kurzu nebo potřebujete poradit?</p>
-                <p class="text-cyan-300 font-bold">E-mail: podpora@pcproseniory.cz</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 pt-8 mt-8 border-t border-slate-800 text-center text-xs text-slate-500">
-            © 2026 PC pro seniory. Všechna práva vyhrazena. Vytvořeno pro radost a pomoc všem generacím.
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT PRO OBSAH A FUNKČNOST -->
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        let currentScale = 1;
-        function changeFontSize(direction) {
-            currentScale += direction * 0.1;
-            if (currentScale < 0.9) currentScale = 0.9;
-            if (currentScale > 1.4) currentScale = 1.4;
-            document.body.style.fontSize = currentScale + 'rem';
-        }
-
-        function toggleContrast() {
-            document.body.classList.toggle('high-contrast');
-        }
-
-        function filterGlossary() {
-            const input = document.getElementById('glossary-search').value.toLowerCase();
-            const list = document.getElementById('glossary-list').children;
-            for (let item of list) {
-                const text = item.innerText.toLowerCase();
-                item.style.display = text.includes(input) ? 'block' : 'none';
-            }
-        }
-
-        // Kompletní databáze výukových kapitol
-        const lessonsData = {
-            'kapitola-0': {
-                title: '0. Popis PC a jeho součástí',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">0. Popis PC a jeho součástí</h3>
-                    <p>Vítejte v první kapitole našeho kurzu! Rozpoznáváme zde druhy počítačů (stolní PC, notebook, tablet), popisujeme počítačovou skříň (bednu), hlavní vypínač, klávesnici a obsluhu myši.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Stolní počítač:</strong> Pevná bedna pod stolem, zvlášť monitor, klávesnice a myš.</li>
-                        <li><strong>Notebook:</strong> Otevírací zařízení spojující displej a klávesnici.</li>
-                        <li><strong>Tablet:</strong> Čistá dotyková placka bez fyzické klávesnice.</li>
-                        <li><strong>Zapnutí:</strong> Jedno jemné ťuknutí na velké tlačítko s symbolem přerušeného kroužku (⏻).</li>
-                    </ul>
-                `,
-                simpler: 'Počítačová skříň je jako velká krabici od bot, ve které bydlí hodný trpaslík. Vy mu přes myš a klávesnici dáváte úkoly a on je okamžitě ukazuje na obrazovce. Nemusíte se ničeho bát.'
-            },
-            'kapitola-1': {
-                title: '1. Základní obsluha',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">1. Základní obsluha počítače</h3>
-                    <p>Správné sezení u počítače chrání vaše zdraví. Mějte nohy pevně na zemi, záda opřená a horní okraj monitoru ve výšce očí.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Osvětlení:</strong> Lampičku mějte po straně, aby monitor neházel odlesky.</li>
-                        <li><strong>Nácvik myši:</strong> Myš držíme volně v dlaní, ukazováčkem klikáme vlevo a pohybem po podložce řídíme šipku.</li>
-                        <li><strong>Vypnutí:</strong> Vždy počítač vypínejte bezpečně přes tlačítko Start vlevo dole -> Vypnout. Nikdy nevytahujte šňůru ze zdi natvrdo!</li>
-                    </ul>
-                `,
-                simpler: 'Seďte u počítače rovně jako u oběda. Myš hladíte po hřbetu jako malého mazlíčka a vypínáte ho vždy přes nabídku Start vlevo dole, aby si úředník uvnitř mohl uklidit stůl.'
-            },
-            'kapitola-2': {
-                title: '2. Seznámení s OS Windows',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">2. Seznámení s OS Windows</h3>
-                    <p>Hlavní prostředí obrazovky po zapnutí se nazývá <strong>Plocha</strong>. Dole se nachází hlavní panel.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Práce s okny:</strong> Vpravo nahoře najdete pomlčku (schování), čtverec (roztáhnutí) a křížek (úplné zavření).</li>
-                        <li><strong>Metoda Uchop a pusť:</strong> Podržením levého tlačítka myši můžete přetahovat ikony po ploše.</li>
-                        <li><strong>Program Malování:</strong> Zábavný nástroj pro trénink přesnosti myši a kreslení čar či tvarů.</li>
-                    </ul>
-                `,
-                simpler: 'Plocha je váš digitální stůl. Okna programů si můžete schovat pod stůl (pomlčka) nebo je vyhodit do koše (křížek). V Malování si pak můžete bez obav zkusit kreslit.'
-            },
-            'kapitola-3': {
-                title: '3. Složky a soubory',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">3. Složky a soubory</h3>
-                    <p>V datech musíme mít pořádek. <strong>Soubor</strong> je samostatný dokument či fotka, <strong>složka</strong> je digitální obálka (šanon), kam ho uložíme.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Tvorba složky:</strong> Klikněte na ploše *pravým* tlačítkem myši -> Nová -> Složka -> Napište název -> Enter.</li>
-                        <li><strong>Mazání:</strong> Nepotřebné soubory pošleme do Koše, odkud je lze v případě omylu ještě obnovit.</li>
-                    </ul>
-                `,
-                simpler: 'Soubor je jeden recept na papírku a složka je kuchařská kniha, kam si ho založíte. Když se vám něco nelíbí, hodíte to do koše pod stolem, odkud to jde ještě zachránit.'
-            },
-            'kapitola-4': {
-                title: '4. Ukládání a přenos dat',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">4. Ukládání a přenos dat</h3>
-                    <p>Chcete-li přenést fotky k sousedům nebo rodině, použijte <strong>USB flash disk (flešku)</strong>.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Zasuňte flešku do USB otvoru počítače.</li>
-                        <li>Zkopírujte na ni požadované soubory.</li>
-                        <li>Před vytažením nezapomeňte flešku bezpečně odebrat v systému u hodin.</li>
-                    </ul>
-                `,
-                simpler: 'Fleška je miniaturní krabička na svačinu, do které naložíte fotky, strčíte ji do kapsy kabátu a přinesete k jinému počítači.'
-            },
-            'kapitola-5': {
-                title: '5. Psaní textu na PC',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">5. Psaní textu na PC</h3>
-                    <p>Pomocí textového editoru (např. Word nebo Poznámkový blok) můžete psát dopisy a vzpomínky.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Blikající čárka (kurzor) ukazuje, kde se píše další písmeno.</li>
-                        <li>Mezerník dělá mezery, Enter odřádkovává a Backspace maže překlepy.</li>
-                        <li>Nezapomeňte práci pravidelně ukládat.</li>
-                    </ul>
-                `,
-                simpler: 'Textový editor je jako kouzelný psací stroj. Cokoliv napíšete, můžete zvětšit, přebarvit nebo vytisknout, aniž byste museli vyhodit celý papír.'
-            },
-            'kapitola-6': {
-                title: '6. Tisk dokumentů',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">6. Tisk dokumentů</h3>
-                    <p>Potřebujete mít dokument v ruce na papíře? Pomůže vám tiskárna.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Zkontrolujte zapojení tiskárny a zásobu papírů v podavači.</li>
-                        <li>V dokumentu zvolte Soubor -> Tisk (nebo klávesy Ctrl + P).</li>
-                        <li>Potvrďte tisk tlačítkem.</li>
-                    </ul>
-                `,
-                simpler: 'Tiskárna je váš osobní tiskař v miniaturním vydání. Vyšlete povel z počítače a ona vám věrně přepíše text na reálný papír.'
-            },
-            'kapitola-7': {
-                title: '7. Internet a e-mail',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">7. Internet a elektronická pošta</h3>
-                    <p>Internet je obrovská knihovna a e-mail je blesková pošta zdarma.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Prohlížeč:</strong> Program (např. Chrome) pro otvírání webových stránek.</li>
-                        <li><strong>E-mail:</strong> Digitální dopis; vyplníte adresu příjemce, text a kliknete na Odeslat.</li>
-                        <li><strong>Bezpečnost:</strong> Nikdy neklikejte na podezřelé odkazy v SMS o balíčcích či výhrách!</li>
-                    </ul>
-                `,
-                simpler: 'Internet je kouzelné okno do světa a e-mail je blesková pohlednice. Pozor jen na cizí lidi s podezřelými odkazy na peníze.'
-            },
-            'mobil-zaklady': {
-                title: '8. Smartphone: Ovládání a dotykový displej',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">8. Smartphone: Dotykový displej a ovládání</h3>
-                    <p>Chytrý telefon se ovládá bříškem prstu. Rozlišujeme Android (Samsung, Xiaomi) a iPhone (Apple).</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Klepnutí:</strong> Krátké ťuknutí prstem otevírá položky.</li>
-                        <li><strong>Tažení (Scroll):</strong> Přejetím prstu posouváte stránku nahoru a dolů.</li>
-                        <li><strong>Zvětšení písma:</strong> V Nastavení -> Displej si můžete písmo zvětšit na maximum.</li>
-                    </ul>
-                `,
-                simpler: 'Telefon v kapse je malý počítač se skleněnou tabulkou. Nemusíte na něj tlačit, stačí ho jemně pohladit prstem.'
-            },
-            'mobil-whatsapp': {
-                title: '8. Smartphone: WhatsApp a videohovory',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">8. Smartphone: WhatsApp a videohovory</h3>
-                    <p>Aplikace WhatsApp slouží k bezplatnému psaní a volání s rodinou přes internet.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Otevřete WhatsApp a vyberte kontakt vnoučete či dcery.</li>
-                        <li>Klepnutím na ikonu videokamery zahájíte živý videohovor.</li>
-                    </ul>
-                `,
-                simpler: 'WhatsApp je kouzelné zrcadlo v ruce. Zavoláte dceři a v téže vteřině ji vidíte v obýváku naživo.'
-            },
-            'bezpecnost-sms': {
-                title: 'Bezpečnost: Podvodné SMS a e-maily',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">Bezpečnost: Podvodné SMS a e-maily</h3>
-                    <p>Podvodníci rozesílají falešné zprávy o nezaplacených balíčcích či hrozící blokaci účtu.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Nikdy neklikejte na přiložené internetové odkazy v podezřelých zprávách.</li>
-                        <li>Banka ani pošta takto poplatky nevyžadují. Zprávu rovnou smažte.</li>
-                    </ul>
-                `,
-                simpler: 'Je to jako když vám někdo hodí do schránky anonymní lístek, že dlužíte peníze a máte je hodit do křoví. Nikdy na to nereagujte.'
-            },
-            'bezpecnost-nakupy': {
-                title: 'Bezpečnost: Bezpečné nákupy online',
-                html: `
-                    <h3 class="text-2xl font-black text-slate-900">Bezpečnost: Bezpečné nákupy online</h3>
-                    <p>Nakupujte pouze v ověřených e-shopech s jasnými kontakty a historií.</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Pozor na podezřele nízké ceny a neznámé prodejce.</li>
-                        <li>Při platbě kartou dbejte zvýšené opatrnosti a ověřte si důvěryhodnost obchodu.</li>
-                    </ul>
-                `,
-                simpler: 'Internetový obchod je jako obchod na ulici. Pokud nemá ceduli s adresou a nikdo v něm nebere telefon, raději v něm nic kupujte.'
-            }
-        };
-
-        function openLesson(lessonKey) {
-            const data = lessonsData[lessonKey] || { title: 'Lekce', html: '<p>Obsah se připravuje.</p>', simpler: 'Tohle téma brzy doplníme.' };
-            const modalContent = document.getElementById('modal-content');
-            modalContent.innerHTML = data.html;
-            document.getElementById('simpler-text').innerText = data.simpler;
-            document.getElementById('simpler-explanation-box').classList.add('hidden');
-            document.getElementById('lesson-modal').classList.remove('hidden');
-        }
-
-        function closeLesson() {
-            document.getElementById('lesson-modal').classList.add('hidden');
-        }
-
-        function toggleSimplerExplanation() {
-            const box = document.getElementById('simpler-explanation-box');
-            box.classList.toggle('hidden');
-        }
-    </script>
-</body>
-</html>
+                <h3 class="text-lg font-bold text
