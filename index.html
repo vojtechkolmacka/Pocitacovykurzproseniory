@@ -61,68 +61,72 @@
         </div>
     </section>
 
-    <!-- HLAVNÍ GRAFICKÝ BANNER S PRAROJIČI, V NĚMŽ JE VNOŘENÉ MENU (SENDVIČOVÉ ZÁLOŽKY) -->
-    <section id="uvod" class="relative bg-brand-dark overflow-hidden shadow-2xl border-b border-cyan-500/30 mt-4">
-        
-        <!-- Vnořená hlavička s menu přímo v banneru -->
-        <header class="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 via-black/40 to-transparent py-3 px-4">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-                
-                <div class="flex items-center gap-3">
-                    <div class="bg-gradient-to-tr from-cyan-600 to-blue-500 p-2 rounded-xl text-white shadow-lg border border-cyan-400/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h1 class="text-lg sm:text-xl font-black tracking-tight leading-none text-white drop-shadow">PC pro <span class="text-cyan-400">seniory</span></h1>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center gap-4 font-semibold text-xs bg-black/40 backdrop-blur px-4 py-2 rounded-2xl border border-white/20">
-                    <a href="#uvod" class="text-cyan-300 hover:text-white transition">Úvod</a>
-                    <a href="#kurz" class="text-white hover:text-cyan-300 transition">Kurz</a>
-                    <a href="#slovnicek" class="text-white hover:text-cyan-300 transition">Slovníček</a>
-                    <a href="#knihanavstev" class="text-white hover:text-cyan-300 transition">Kniha návštěv</a>
-                    <a href="#odkazy" class="text-white hover:text-cyan-300 transition">Odkazy</a>
-                    <a href="#bezpecnost" class="text-amber-300 hover:text-amber-200 transition font-bold">Bezpečnost</a>
-                    <a href="#kontakt" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 px-3 py-1.5 rounded-xl shadow transition font-bold">Kontakt</a>
-                </nav>
-
-                <!-- Funkční sendvičové menu (hamburger) vpravo nahoře -->
-                <button onclick="toggleMobileMenu()" id="menu-btn" class="md:hidden text-white focus:outline-none p-2 bg-black/60 backdrop-blur rounded-xl border border-white/30 shadow">
-                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+    <!-- HLAVNÍ NAVIGAČNÍ LIŠTA (Čistá, pod reklamou, s klasickými záložkami a funkčním menu) -->
+    <header class="bg-brand-blue text-white shadow-xl sticky top-0 z-50 border-b border-cyan-500/20 mt-3">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-cyan-600 to-blue-500 p-2.5 rounded-2xl text-white shadow-lg border border-cyan-400/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                </button>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-tight leading-none text-white">PC pro <span class="text-cyan-400">seniory</span></h1>
+                    <p class="text-[11px] text-cyan-200 mt-1 font-medium">Naučím vás s počítačem</p>
+                </div>
             </div>
 
-            <!-- Rozbalovací mobilní menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 backdrop-blur-md border border-slate-800 mt-3 mx-4 p-4 rounded-2xl space-y-2 text-sm shadow-2xl">
-                <a href="#uvod" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">🏠 Úvod</a>
-                <a href="#kurz" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">📚 Počítačový kurz</a>
-                <a href="#slovnicek" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">📖 Slovníček pojmů</a>
-                <a href="#knihanavstev" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">✍️ Kniha návštěv</a>
-                <a href="#odkazy" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-white">🔗 Odkazy na weby</a>
-                <a href="#bezpecnost" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-xl hover:bg-blue-900 text-amber-300 font-bold">⚠️ Bezpečnost</a>
-                <a href="#kontakt" onclick="toggleMobileMenu()" class="block py-2 bg-cyan-500 text-slate-950 text-center rounded-xl font-bold mt-2">Kontakt</a>
-            </div>
-        </header>
+            <!-- Desktop Menu (Záložky přepínající sekce) -->
+            <nav class="hidden md:flex items-center gap-2 font-semibold text-sm">
+                <button onclick="switchSection('uvod')" id="tab-uvod" class="nav-tab px-3 py-2 rounded-xl text-cyan-300 bg-blue-900/60 transition">Úvod</button>
+                <button onclick="switchSection('kurz')" id="tab-kurz" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-white transition">Kurz</button>
+                <button onclick="switchSection('slovnicek')" id="tab-slovnicek" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-white transition">Slovníček</button>
+                <button onclick="switchSection('knihanavstev')" id="tab-knihanavstev" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-white transition">Kniha návštěv</button>
+                <button onclick="switchSection('odkazy')" id="tab-odkazy" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-white transition">Odkazy</button>
+                <button onclick="switchSection('bezpecnost')" id="tab-bezpecnost" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-amber-300 font-bold transition">Bezpečnost</button>
+            </nav>
 
-        <!-- Samotný obrázek banneru -->
-        <div class="max-w-7xl mx-auto">
-            <div class="w-full">
+            <!-- Mobilní hamburger tlačítko -->
+            <button onclick="toggleMobileMenu()" id="menu-btn" class="md:hidden text-white focus:outline-none p-2.5 bg-blue-900/80 rounded-xl border border-blue-700 shadow">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Rozbalovací mobilní menu (přepínající sekce) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-950 border-t border-blue-900 px-4 pt-3 pb-5 space-y-2 text-sm shadow-2xl z-50">
+            <button onclick="switchSection('uvod'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">🏠 Úvod</button>
+            <button onclick="switchSection('kurz'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">📚 Počítačový kurz</button>
+            <button onclick="switchSection('slovnicek'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">📖 Slovníček pojmů</button>
+            <button onclick="switchSection('knihanavstev'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">✍️ Kniha návštěv</button>
+            <button onclick="switchSection('odkazy'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">🔗 Odkazy na weby</button>
+            <button onclick="switchSection('bezpecnost'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-amber-300 font-bold">⚠️ Bezpečnost</button>
+        </div>
+    </header>
+
+    <!-- HLAVNÍ OBSAH (Rozdělený do samostatných stránek/sekcí) -->
+    <main class="max-w-7xl mx-auto px-4 py-10">
+        
+        <!-- SEKCE 1: ÚVOD (S bannerem s prarodiči) -->
+        <div id="section-uvod" class="page-section space-y-12">
+            <!-- Grafický banner s prarodiči -->
+            <div class="relative bg-brand-dark overflow-hidden shadow-2xl rounded-3xl border border-cyan-500/30">
                 <img src="banner-pc.png" alt="Počítačový kurz pro seniory" class="w-full h-auto object-cover max-h-[500px]">
             </div>
-        </div>
-    </section>
 
-    <!-- HLAVNÍ OBSAH / KURZY -->
-    <main class="max-w-7xl mx-auto px-4 py-10 space-y-16">
-        
-        <!-- Sekce kapitol počítačového kurzu -->
-        <section id="kurz" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 pt-4">
+                <h2 class="text-3xl font-black text-slate-900">Vítejte na portálu PC pro seniory</h2>
+                <p class="text-slate-600 text-lg">Vyberte si v horním menu záložku <strong>Kurz</strong> a začněte s výukou od úplných základů vlastním tempem.</p>
+                <button onclick="switchSection('kurz')" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg transition">
+                    Přejít na přehled kurzu →
+                </button>
+            </div>
+        </div>
+
+        <!-- SEKCE 2: KURZ (Seznam kapitol) -->
+        <div id="section-kurz" class="page-section space-y-8 hidden">
             <div class="text-center max-w-2xl mx-auto space-y-3">
                 <h2 class="text-3xl font-black text-slate-900">Počítačový kurz krok za krokem</h2>
                 <p class="text-slate-600">Vyberte si kapitolu, se kterou chcete začít. Všechny lekce jsou psané srozumitelně pro začátečníky.</p>
@@ -179,57 +183,8 @@
             </div>
         </section>
 
-        <!-- KNIHA NÁVŠTĚV -->
-        <section id="knihanavstev" class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 space-y-6">
-            <div>
-                <h2 class="text-2xl font-black text-slate-900">✍️ Kniha návštěv</h2>
-                <p class="text-slate-600 text-sm">Zanechte nám vzkaz, pozdrav nebo zpětnou vazbu ke kurzu.</p>
-            </div>
-            
-            <form onsubmit="addGuestbookEntry(event)" class="space-y-4">
-                <div>
-                    Vaše jméno:<br>
-                    <input type="text" id="gb-name" required placeholder="Např. Jan Novák" class="w-full md:w-1/2 mt-1 px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:outline-none">
-                </div>
-                <div>
-                    Váš vzkaz:<br>
-                    <textarea id="gb-message" required rows="3" placeholder="Napište nám vzkaz..." class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:outline-none"></textarea>
-                </div>
-                <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold px-6 py-2.5 rounded-xl transition shadow">Odeslat vzkaz</button>
-            </form>
-
-            <div id="guestbook-list" class="space-y-3 pt-4 border-t border-slate-100">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-900 text-sm">Marie Novotná</p>
-                    <p class="text-sm text-slate-700 mt-1">Mockrát děkuji za skvělé a srozumitelné návody! Konečně vím, jak ovládat počítač.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ODKAZY NA JINÉ WEB STRÁNKY -->
-        <section id="odkazy" class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 space-y-6">
-            <div>
-                <h2 class="text-2xl font-black text-slate-900">🔗 Užitečné odkazy na jiné webové stránky</h2>
-                <p class="text-slate-600 text-sm">Doporučené portály, které se vám budou při surfování hodit.</p>
-            </div>
-            <div id="links-container" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <a href="https://www.seznam.cz" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
-                    <h3 class="font-bold text-blue-900">Seznam.cz</h3>
-                    <p class="text-xs text-slate-600 mt-1">Český vyhledávač, zprávy a e-mail.</p>
-                </a>
-                <a href="https://mapy.cz" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
-                    <h3 class="font-bold text-blue-900">Mapy.cz</h3>
-                    <p class="text-xs text-slate-600 mt-1">Plánování tras, turistické mapy celé republiky.</p>
-                </a>
-                <a href="https://www.idnes.cz" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
-                    <h3 class="font-bold text-blue-900">iDNES.cz</h3>
-                    <p class="text-xs text-slate-600 mt-1">Aktuální zpravodajství z domova i ze světa.</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- SLOVNÍČEK POJMŮ -->
-        <section id="slovnicek" class="space-y-6">
+        <!-- SEKCE 3: SLOVNÍČEK -->
+        <div id="section-slovnicek" class="page-section space-y-6 hidden">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h2 class="text-2xl font-black text-slate-900">Slovníček pojmů „po lopatě“</h2>
@@ -248,7 +203,83 @@
                     <p class="text-sm text-slate-700">Program v počítači (např. Chrome) pro prohlížení stránek.</p>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- SEKCE 4: KNIHA NÁVŠTĚV -->
+        <div id="section-knihanavstev" class="page-section space-y-6 hidden">
+            <div class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">✍️ Kniha návštěv</h2>
+                    <p class="text-slate-600 text-sm">Zanechte nám vzkaz, pozdrav nebo zpětnou vazbu ke kurzu.</p>
+                </div>
+                
+                <form onsubmit="addGuestbookEntry(event)" class="space-y-4">
+                    <div>
+                        Vaše jméno:<br>
+                        <input type="text" id="gb-name" required placeholder="Např. Jan Novák" class="w-full md:w-1/2 mt-1 px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                    </div>
+                    <div>
+                        Váš vzkaz:<br>
+                        <textarea id="gb-message" required rows="3" placeholder="Napište nám vzkaz..." class="w-full mt-1 px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:outline-none"></textarea>
+                    </div>
+                    <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold px-6 py-2.5 rounded-xl transition shadow">Odeslat vzkaz</button>
+                </form>
+
+                <div id="guestbook-list" class="space-y-3 pt-4 border-t border-slate-100">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <p class="font-bold text-slate-900 text-sm">Marie Novotná</p>
+                        <p class="text-sm text-slate-700 mt-1">Mockrát děkuji za skvělé a srozumitelné návody! Konečně vím, jak ovládat počítač.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEKCE 5: ODKAZY -->
+        <div id="section-odkazy" class="page-section space-y-6 hidden">
+            <div class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">🔗 Užitečné odkazy na jiné webové stránky</h2>
+                    <p class="text-slate-600 text-sm">Doporučené portály, které se vám budou při surfování hodit.</p>
+                </div>
+                <div id="links-container" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <a href="https://www.seznam.cz" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
+                        <h3 class="font-bold text-blue-900">Seznam.cz</h3>
+                        <p class="text-xs text-slate-600 mt-1">Český vyhledávač, zprávy a e-mail.</p>
+                    </a>
+                    <a href="https://mapy.cz" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
+                        <h3 class="font-bold text-blue-900">Mapy.cz</h3>
+                        <p class="text-xs text-slate-600 mt-1">Plánování tras, turistické mapy celé republiky.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEKCE 6: BEZPEČNOST -->
+        <div id="section-bezpecnost" class="page-section space-y-6 hidden">
+            <div class="bg-amber-50/80 border-2 border-amber-300 rounded-3xl p-8 shadow-md space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="bg-amber-500 text-white p-3.5 rounded-2xl text-2xl shadow">⚠️</div>
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Bezpečnost na Internetu bez obav</h2>
+                        <p class="text-slate-700 text-sm">Jak bezpečně nakupovat a chránit svá data.</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-amber-200 space-y-2 shadow-sm">
+                        <h3 class="font-bold text-slate-900">🚨 Pozor na falešné SMS</h3>
+                        <p class="text-xs text-slate-600">Jak odhalit podvodné zprávy o balíčcích.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-amber-200 space-y-2 shadow-sm">
+                        <h3 class="font-bold text-slate-900">🔒 Bezpečná hesla</h3>
+                        <p class="text-xs text-slate-600">Proč si hesla nemíchat a jak si zapamatovat to hlavní.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-amber-200 space-y-2 shadow-sm">
+                        <h3 class="font-bold text-slate-900">🛒 Nákupy online</h3>
+                        <p class="text-xs text-slate-600">Jak bezpečně objednat zboží a nenaletět.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
@@ -260,177 +291,4 @@
             <div id="modal-content" class="space-y-4"></div>
 
             <div class="bg-cyan-50 border border-cyan-200 p-4 rounded-2xl space-y-3">
-                <button onclick="toggleSimplerExplanation()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2 text-base">
-                    <span>💡 Vysvětli mi to ještě jednodušeji</span>
-                </button>
-                <div id="simpler-explanation-box" class="hidden bg-white p-4 rounded-xl border border-cyan-300 text-sm text-slate-700 space-y-2">
-                    <h4 class="font-bold text-cyan-900">Zjednodušený výklad:</h4>
-                    <p id="simpler-text"></p>
-                </div>
-            </div>
-
-            <div class="flex justify-end pt-4 border-t border-slate-100">
-                <button onclick="closeLesson()" class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition">Zavřít lekci</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- PATIČKA -->
-    <footer id="kontakt" class="bg-brand-dark text-white py-12 border-t border-slate-800 mt-16">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-            <div class="space-y-3">
-                <h3 class="text-lg font-bold text-cyan-400">PC pro seniory</h3>
-                <p class="text-sm text-slate-400">Trpělivá škola moderních technologií. Vše vysvětlujeme klidně a srozumitelně.</p>
-            </div>
-            <div class="space-y-3">
-                <h3 class="text-lg font-bold text-white">Rychlé odkazy</h3>
-                <ul class="text-sm text-slate-400 space-y-1">
-                    <li><a href="#uvod" class="hover:text-white">Úvodní stránka</a></li>
-                    <li><a href="#kurz" class="hover:text-white">Seznam kapitol</a></li>
-                    <li><a href="#knihanavstev" class="hover:text-white">Kniha návštěv</a></li>
-                    <li><a href="admin.html" class="text-cyan-300 hover:underline">PWA Administrace</a></li>
-                </ul>
-            </div>
-            <div class="space-y-3">
-                <h3 class="text-lg font-bold text-white">Kontakt</h3>
-                <p class="text-cyan-300 font-bold">E-mail: podpora@pcproseniory.cz</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 pt-8 mt-8 border-t border-slate-800 text-center text-xs text-slate-500">
-            © 2026 PC pro seniory. Všechna práva vyhrazena.
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        let currentScale = 1;
-        function changeFontSize(direction) {
-            currentScale += direction * 0.1;
-            if (currentScale < 0.95) currentScale = 0.95;
-            if (currentScale > 1.35) currentScale = 1.35;
-            document.body.style.fontSize = currentScale + 'rem';
-        }
-
-        function toggleContrast() {
-            document.body.classList.toggle('high-contrast');
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        function filterGlossary() {
-            const input = document.getElementById('glossary-search').value.toLowerCase();
-            const list = document.getElementById('glossary-list').children;
-            for (let item of list) {
-                const text = item.innerText.toLowerCase();
-                item.style.display = text.includes(input) ? 'block' : 'none';
-            }
-        }
-
-        window.onload = function() {
-            let count = localStorage.getItem('site_visitors') || 1240;
-            count = parseInt(count) + 1;
-            localStorage.setItem('site_visitors', count);
-            document.getElementById('visitor-count').innerText = count;
-
-            loadAdminData();
-        }
-
-        function loadAdminData() {
-            const savedAd = localStorage.getItem('site_ad_html');
-            if(savedAd) {
-                document.getElementById('ad-content').innerHTML = savedAd;
-            }
-
-            const savedLinks = JSON.parse(localStorage.getItem('site_links') || '[]');
-            if(savedLinks.length > 0) {
-                let html = '';
-                savedLinks.forEach(l => {
-                    html += `<a href="${l.url}" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
-                        <h3 class="font-bold text-blue-900">${l.title}</h3>
-                        <p class="text-xs text-slate-600 mt-1">${l.desc || ''}</p>
-                    </a>`;
-                });
-                document.getElementById('links-container').innerHTML = html;
-            }
-
-            const savedGb = JSON.parse(localStorage.getItem('site_guestbook') || '[]');
-            if(savedGb.length > 0) {
-                let html = '';
-                savedGb.forEach(g => {
-                    html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <p class="font-bold text-slate-900 text-sm">${g.name}</p>
-                        <p class="text-sm text-slate-700 mt-1">${g.msg}</p>
-                    </div>`;
-                });
-                html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-900 text-sm">Marie Novotná</p>
-                    <p class="text-sm text-slate-700 mt-1">Mockrát děkuji za skvělé a srozumitelné návody!</p>
-                </div>`;
-                document.getElementById('guestbook-list').innerHTML = html;
-            }
-        }
-
-        function addGuestbookEntry(e) {
-            e.preventDefault();
-            const name = document.getElementById('gb-name').value;
-            const msg = document.getElementById('gb-message').value;
-            let gb = JSON.parse(localStorage.getItem('site_guestbook') || '[]');
-            gb.unshift({name, msg});
-            localStorage.setItem('site_guestbook', JSON.stringify(gb));
-            alert('Vzkaz byl úspěšně přidán do knihy návštěv!');
-            document.getElementById('gb-name').value = '';
-            document.getElementById('gb-message').value = '';
-            loadAdminData();
-        }
-
-        const lessonsData = {
-            'kapitola-0': {
-                title: '0. Popis PC a jeho součástí',
-                text: 'Velká bedna (skříň počítače) je mozek celého zařízení. Zvenku najdete hlavní vypínač, otvory pro USB paměti a připojení pro sluchátka.',
-                simpler: 'Představte si počítačovou skříň jako velkou krabici od bot, ve které bydlí hodný trpaslík.'
-            },
-            'kapitola-1': {
-                title: '1. Základní obsluha počítače',
-                text: 'Pohodlně se usaďte, nastavte si výšku židle tak, abyste měli ruce v rovině stolu. S myší pracujte volně v dlaní.',
-                simpler: 'Když sedíte u počítače, seďte rovně jako u stolu při obědě.'
-            },
-            'kapitola-2': {
-                title: '2. Seznámení s OS Windows',
-                text: 'Na obrazovce (ploše) vidíte malé obrázky neboli ikony. Kliknutím dvakrát za sebou program otevřete.',
-                simpler: 'Plocha počítače je jako váš pracovní stůl.'
-            },
-            'kapitola-3': {
-                title: '3. Složky a soubory',
-                text: 'Abychom měli ve fotografiích pořádek, ukládáme je do složek.',
-                simpler: 'Složka je jako obálka na fotky.'
-            }
-        };
-
-        function openLesson(lessonKey) {
-            const data = lessonsData[lessonKey] || { title: 'Lekce', text: 'Obsah lekce se připravuje.', simpler: 'Tohle téma brzy doplníme.' };
-            document.getElementById('modal-content').innerHTML = `
-                <h3 class="text-2xl font-black text-slate-900">${data.title}</h3>
-                <p class="text-slate-700 leading-relaxed text-lg">${data.text}</p>
-            `;
-            document.getElementById('simpler-text').innerText = data.simpler;
-            document.getElementById('simpler-explanation-box').classList.add('hidden');
-            document.getElementById('lesson-modal').classList.remove('hidden');
-        }
-
-        function closeLesson() {
-            document.getElementById('lesson-modal').classList.add('hidden');
-        }
-
-        function toggleSimplerExplanation() {
-            document.getElementById('simpler-explanation-box').classList.toggle('hidden');
-        }
-    </script>
-</body>
-</html>
+                <button onclick="toggleSimplerExplanation()" class="w-full bg-cyan-
