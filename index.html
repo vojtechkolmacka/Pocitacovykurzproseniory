@@ -45,7 +45,7 @@
                 <button onclick="toggleDarkMode()" class="bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded text-xs border border-slate-700">🌙</button>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-cyan-400 text-xs font-semibold">👀 Návštěv: <span id="visitor-count">1</span></span>
+                <span class="text-cyan-400 text-xs font-semibold">👀 Návštěv: <span id="visitor-count">0</span></span>
                 <a href="admin.html" class="text-cyan-300 hover:underline text-xs font-semibold hidden">PWA Administrace</a>
             </div>
         </div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <!-- Desktop Menu (Záložky) -->
+            <!-- Desktop Menu -->
             <nav class="hidden md:flex items-center gap-2 font-semibold text-sm">
                 <button onclick="switchSection('uvod')" id="tab-uvod" class="nav-tab px-3 py-2 rounded-xl text-cyan-300 bg-blue-900/60 transition">Úvod</button>
                 <button onclick="switchSection('kurz')" id="tab-kurz" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-white transition">Kurz</button>
@@ -106,7 +106,7 @@
         </div>
     </header>
 
-    <!-- HLAVNÍ OBSAH (Samostatné stránky/sekce) -->
+    <!-- HLAVNÍ OBSAH -->
     <main class="max-w-7xl mx-auto px-4 py-10">
         
         <!-- SEKCE 1: ÚVOD -->
@@ -131,7 +131,7 @@
                 <p class="text-slate-600">Vyberte si kapitolu, se kterou chcete začít. Všechny lekce jsou psané srozumitelně pro začátečníky.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="courses-grid">
                 <!-- Karta 0 -->
                 <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
                     <div>
@@ -140,42 +140,6 @@
                         <p class="text-sm text-slate-600">Skříň počítače, klávesnice, myš a jak to celé dohromady funguje.</p>
                     </div>
                     <button onclick="openLesson('kapitola-0')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít lekci →
-                    </button>
-                </div>
-
-                <!-- Karta 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4 shadow-sm">1</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Základní obsluha</h3>
-                        <p class="text-sm text-slate-600">Správné sezení, osvětlení, práce s myší a bezpečné spuštění počítače.</p>
-                    </div>
-                    <button onclick="openLesson('kapitola-1')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít lekci →
-                    </button>
-                </div>
-
-                <!-- Karta 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4 shadow-sm">2</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Seznámení s OS Windows</h3>
-                        <p class="text-sm text-slate-600">Prostředí Windows, práce s okny, přetahování myší a program Malování.</p>
-                    </div>
-                    <button onclick="openLesson('kapitola-2')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
-                        Otevřít lekci →
-                    </button>
-                </div>
-
-                <!-- Karta 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4 shadow-sm">3</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Složky a soubory</h3>
-                        <p class="text-sm text-slate-600">Jak si udržet pořádek v dokumentech, vytváření a přejmenování složek.</p>
-                    </div>
-                    <button onclick="openLesson('kapitola-3')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
                         Otevřít lekci →
                     </button>
                 </div>
@@ -196,10 +160,6 @@
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
                     <h3 class="font-bold text-blue-900 text-lg">Wi-Fi (Vífaj)</h3>
                     <p class="text-sm text-slate-700">Bezdrátový způsob připojení k internetu vzduchem.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-2">
-                    <h3 class="font-bold text-blue-900 text-lg">Prohlížeč</h3>
-                    <p class="text-sm text-slate-700">Program v počítači (např. Chrome) pro prohlížení stránek.</p>
                 </div>
             </div>
         </div>
@@ -245,10 +205,6 @@
                         <h3 class="font-bold text-blue-900">Seznam.cz</h3>
                         <p class="text-xs text-slate-600 mt-1">Český vyhledávač, zprávy a e-mail.</p>
                     </a>
-                    <a href="https://mapy.cz" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
-                        <h3 class="font-bold text-blue-900">Mapy.cz</h3>
-                        <p class="text-xs text-slate-600 mt-1">Plánování tras, turistické mapy celé republiky.</p>
-                    </a>
                 </div>
             </div>
         </div>
@@ -267,14 +223,6 @@
                     <div class="bg-white p-5 rounded-2xl border border-amber-200 space-y-2 shadow-sm">
                         <h3 class="font-bold text-slate-900">🚨 Pozor na falešné SMS</h3>
                         <p class="text-xs text-slate-600">Jak odhalit podvodné zprávy o balíčcích.</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl border border-amber-200 space-y-2 shadow-sm">
-                        <h3 class="font-bold text-slate-900">🔒 Bezpečná hesla</h3>
-                        <p class="text-xs text-slate-600">Proč si hesla nemíchat a jak si zapamatovat to hlavní.</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl border border-amber-200 space-y-2 shadow-sm">
-                        <h3 class="font-bold text-slate-900">🛒 Nákupy online</h3>
-                        <p class="text-xs text-slate-600">Jak bezpečně objednat zboží a nenaletět.</p>
                     </div>
                 </div>
             </div>
@@ -322,8 +270,9 @@
                 </ul>
             </div>
             <div class="space-y-3">
-                <h3 class="text-lg font-bold text-white">Kontakt</h3>
-                <p class="text-cyan-300 font-bold">E-mail: podpora@pcproseniory.cz</p>
+                <h3 class="text-lg font-bold text-white">Kontakt & Podpora</h3>
+                <p class="text-sm text-slate-400" id="footer-support-text">Máte dotaz ke kurzu nebo potřebujete poradit?</p>
+                <p class="text-cyan-300 font-bold" id="footer-email">E-mail: podpora@pcproseniory.cz</p>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 pt-8 mt-8 border-t border-slate-800 text-center text-xs text-slate-500">
@@ -331,26 +280,22 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT PRO PŘEPÍNÁNÍ SEKCÍ -->
+    <!-- JAVASCRIPT -->
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // Funkce pro přepínání stránek (sekcí)
         function switchSection(sectionId) {
-            // Skrýt všechny sekce
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(sec => sec.classList.add('hidden'));
 
-            // Zobrazit požadovanou sekci
             const target = document.getElementById('section-' + sectionId);
             if(target) {
                 target.classList.remove('hidden');
             }
 
-            // Aktualizovat aktivní záložku v desktop menu
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(t => {
                 t.classList.remove('bg-blue-900/60', 'text-cyan-300');
@@ -361,7 +306,6 @@
                 activeTab.classList.add('bg-blue-900/60', 'text-cyan-300');
             }
 
-            // Posunout nahoru na začátek stránky
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
@@ -391,20 +335,33 @@
         }
 
         window.onload = function() {
-            let count = localStorage.getItem('site_visitors') || 1240;
-            count = parseInt(count) + 1;
+            // Počítadlo návštěv začíná striktně na 0 a inkrementuje se
+            let count = parseInt(localStorage.getItem('site_visitors') || '0');
+            count += 1;
             localStorage.setItem('site_visitors', count);
             document.getElementById('visitor-count').innerText = count;
 
-            loadAdminData();
+            loadPublicData();
         }
 
-        function loadAdminData() {
+        function loadPublicData() {
+            // Načtení dat uložených z PWA administrace
             const savedAd = localStorage.getItem('site_ad_html');
             if(savedAd) {
                 document.getElementById('ad-content').innerHTML = savedAd;
             }
 
+            const savedEmail = localStorage.getItem('site_support_email');
+            if(savedEmail) {
+                document.getElementById('footer-email').innerText = 'E-mail: ' + savedEmail;
+            }
+
+            const savedSupportText = localStorage.getItem('site_support_text');
+            if(savedSupportText) {
+                document.getElementById('footer-support-text').innerText = savedSupportText;
+            }
+
+            // Odkazy
             const savedLinks = JSON.parse(localStorage.getItem('site_links') || '[]');
             if(savedLinks.length > 0) {
                 let html = '';
@@ -417,20 +374,30 @@
                 document.getElementById('links-container').innerHTML = html;
             }
 
-            const savedGb = JSON.parse(localStorage.getItem('site_guestbook') || '[]');
-            if(savedGb.length > 0) {
+            // Články / Kurzy
+            const savedCourses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+            if(savedCourses.length > 0) {
                 let html = '';
-                savedGb.forEach(g => {
-                    html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <p class="font-bold text-slate-900 text-sm">${g.name}</p>
-                        <p class="text-sm text-slate-700 mt-1">${g.msg}</p>
+                savedCourses.forEach(c => {
+                    html += `<div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">${c.title}</h3>
+                            <div class="text-sm text-slate-600 space-y-2">${c.content}</div>
+                        </div>
                     </div>`;
                 });
-                html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-900 text-sm">Marie Novotná</p>
-                    <p class="text-sm text-slate-700 mt-1">Mockrát děkuji za skvělé a srozumitelné návody!</p>
+                // Zachováme i základní
+                html += `<div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-xl transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-xl mb-4 shadow-sm">0</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Popis PC a jeho součástí</h3>
+                        <p class="text-sm text-slate-600">Skříň počítače, klávesnice, myš a jak to celé dohromady funguje.</p>
+                    </div>
+                    <button onclick="openLesson('kapitola-0')" class="mt-6 w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-2.5 rounded-xl transition">
+                        Otevřít lekci →
+                    </button>
                 </div>`;
-                document.getElementById('guestbook-list').innerHTML = html;
+                document.getElementById('courses-grid').innerHTML = html;
             }
         }
 
@@ -444,7 +411,6 @@
             alert('Vzkaz byl úspěšně přidán do knihy návštěv!');
             document.getElementById('gb-name').value = '';
             document.getElementById('gb-message').value = '';
-            loadAdminData();
         }
 
         const lessonsData = {
@@ -452,21 +418,6 @@
                 title: '0. Popis PC a jeho součástí',
                 text: 'Velká bedna (skříň počítače) je mozek celého zařízení. Zvenku najdete hlavní vypínač, otvory pro USB paměti a připojení pro sluchátka.',
                 simpler: 'Představte si počítačovou skříň jako velkou krabici od bot, ve které bydlí hodný trpaslík.'
-            },
-            'kapitola-1': {
-                title: '1. Základní obsluha počítače',
-                text: 'Pohodlně se usaďte, nastavte si výšku židle tak, abyste měli ruce v rovině stolu. S myší pracujte volně v dlaní.',
-                simpler: 'Když sedíte u počítače, seďte rovně jako u stolu při obědě.'
-            },
-            'kapitola-2': {
-                title: '2. Seznámení s OS Windows',
-                text: 'Na obrazovce (ploše) vidíte malé obrázky neboli ikony. Kliknutím dvakrát za sebou program otevřete.',
-                simpler: 'Plocha počítače je jako váš pracovní stůl.'
-            },
-            'kapitola-3': {
-                title: '3. Složky a soubory',
-                text: 'Abychom měli ve fotografiích pořádek, ukládáme je do složek.',
-                simpler: 'Složka je jako obálka na fotky.'
             }
         };
 
