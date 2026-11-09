@@ -57,12 +57,10 @@
                 <input type="text" id="new-category-name" placeholder="Nová kategorie (např. Tablet, Bezpečnost...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
                 <button onclick="addCategory()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-sm whitespace-nowrap">Přidat</button>
             </div>
-            <div id="admin-categories-list" class="flex flex-wrap gap-2 pt-2">
-                <!-- Seznam kategorií -->
-            </div>
+            <div id="admin-categories-list" class="flex flex-wrap gap-2 pt-2"></div>
         </div>
 
-        <!-- SPRÁVA KURZŮ A ČLÁNKŮ (S MOŽNOSTÍ EDITACE A MAZÁNÍ) -->
+        <!-- SPRÁVA KURZŮ A ČLÁNKŮ -->
         <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4">
             <h2 class="font-bold text-sm text-cyan-300">📚 Správa kurzů a článků</h2>
             
@@ -82,13 +80,11 @@
 
             <div class="space-y-2">
                 <p class="text-xs text-slate-400 font-semibold">Seznam vytvořených článků a kurzů:</p>
-                <div id="admin-courses-list" class="space-y-2 max-h-60 overflow-y-auto">
-                    <!-- Seznam článků -->
-                </div>
+                <div id="admin-courses-list" class="space-y-2 max-h-60 overflow-y-auto"></div>
             </div>
         </div>
 
-        <!-- GENERÁTOR MÉDIÍ PŘÍMO Z MOBILU (Obrázky, Odkazy, Videa) -->
+        <!-- GENERÁTOR PRVKŮ DO TEXTU -->
         <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4">
             <h2 class="font-bold text-sm text-cyan-300">🖼️ Generátor prvků do textu článku</h2>
             
@@ -107,4 +103,8 @@
             <div class="space-y-2 pt-2 border-t border-slate-700">
                 <p class="text-xs text-slate-400">3. Vložit odkaz na jinou stránku:</p>
                 <input type="text" id="inline-link-url" placeholder="URL adresa (https://...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white mb-1">
-                <input type="text" id="inline-link-text" placeholder="Text odkazu (např. Navštívit Seznam)" class="w-full bg-slate
+                <input type="text" id="inline-link-text" placeholder="Text odkazu (např. Navštívit Seznam)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                <button onclick="convertLink()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition">Generovat HTML odkaz</button>
+            </div>
+
+            <textarea id="media-code-result" readonly placeholder="Zde vygenerovaný HTML kód zkopíruj a vlož do obsahu článku..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-cyan-300 h-
