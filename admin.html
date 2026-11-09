@@ -13,8 +13,8 @@
     <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
             <h2 class="text-lg font-black text-cyan-400">🔒 Zabezpečená administrace</h2>
-            <p class="text-xs text-slate-400">Zadej administrátorský token nebo heslo:</p>
-            <input type="password" id="admin-token-input" placeholder="Token / heslo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
+            <p class="text-xs text-slate-400">Zadej administrátorský token:</p>
+            <input type="password" id="admin-token-input" placeholder="Zadej token..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
             <button onclick="verifyAndEnter()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Vstoupit</button>
             <br>
             <a href="index.html" class="text-xs text-slate-500 hover:underline inline-block mt-2">← Zpět na veřejný web</a>
@@ -107,4 +107,104 @@
                 <button onclick="convertLink()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition">Generovat HTML odkaz</button>
             </div>
 
-            <textarea id="media-code-result" readonly placeholder="Zde vygenerovaný HTML kód zkopíruj a vlož do obsahu článku..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-cyan-300 h-
+            <textarea id="media-code-result" readonly placeholder="Zde vygenerovaný HTML kód zkopíruj a vlož do obsahu článku..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-cyan-300 h-24 font-mono"></textarea>
+        </div>
+
+    </div>
+
+    <script>
+        // Trvalý token přímo v kódu – nemůže nikdy zmizet smazáním cache prohlížeče
+        const GITHUB_ADMIN_TOKEN = "kolobeznik2026";
+
+        function verifyAndEnter() {
+            const val = document.getElementById('admin-token-input').value.trim();
+            if(val === GITHUB_ADMIN_TOKEN) {
+                unlockAdmin();
+            } else {
+                alert('Nesprávný token!');
+            }
+        }
+
+        function unlockAdmin() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('admin-main-content').classList.remove('hidden');
+            loadAdminData();
+        }
+
+        function lockAdmin() {
+            location.href = window.location.pathname; // Vymaže token z URL a uzamkne
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tokenParam = urlParams.get('token');
+
+            // Pokud je token v adrese správný, pustí tě to rovnou dovnitř
+            if (tokenParam === GITHUB_ADMIN_TOKEN) {
+                unlockAdmin();
+            }
+        }
+
+        function loadAdminData() {
+            if(localStorage.getItem('site_ad_html')) {
+                document.getElementById('admin-ad').value = localStorage.getItem('site_ad_html');
+            }
+            if(localStorage.getItem('site_support_email')) {
+                document.getElementById('admin-email').value = localStorage.getItem('site_support_email');
+            }
+            if(localStorage.getItem('site_support_text')) {
+                document.getElementById('admin-support-text').value = localStorage.getItem('site_support_text');
+            }
+            renderCategories();
+            renderCoursesList();
+        }
+
+        function saveAd() {
+            localStorage.setItem('site_ad_html', document.getElementById('admin-ad').value);
+            alert('Reklamní box byl aktualizován!');
+        }
+
+        function saveContacts() {
+            localStorage.setItem('site_support_email', document.getElementById('admin-email').value);
+            localStorage.setItem('site_support_text', document.getElementById('admin-support-text').value);
+            alert('Kontakty uloženy!');
+        }
+
+        function addCategory() {
+            const name = document.getElementById('new-category-name').value.trim();
+            if(!name) return;
+            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+            if(!cats.includes(name)) {
+                cats.push(name);
+                localStorage.setItem('site_categories', JSON.stringify(cats));
+                document.getElementById('new-category-name').value = '';
+                renderCategories();
+                alert('Kategorie přidána!');
+            } else {
+                alert('Tato kategorie již existuje.');
+            }
+        }
+
+        function deleteCategory(catName) {
+            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+            cats = cats.filter(c => c !== catName);
+            localStorage.setItem('site_categories', JSON.stringify(cats));
+            renderCategories();
+        }
+
+        function renderCategories() {
+            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+            let html = '';
+            let selectHtml = '';
+            cats.forEach(c => {
+                html += `<span class="bg-slate-900 border border-slate-700 px-3 py-1 rounded-xl text-xs flex items-center gap-2">
+                    ${c} <button onclick="deleteCategory('${c}')" class="text-rose-400 hover:text-rose-200 font-bold">×</button>
+                </span>`;
+                selectHtml += `<option value="${c}">${c}</option>`;
+            });
+            document.getElementById('admin-categories-list').innerHTML = html;
+            document.getElementById('course-cat').innerHTML = selectHtml;
+        }
+
+        function saveCourse() {
+            
