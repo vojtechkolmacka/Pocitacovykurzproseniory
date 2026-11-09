@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <!-- HLAVIČKA A NAVIGACE -->
+    <!-- HLAVIČKA A NAVIGACE (Sendvičové menu vpravo nahoře) -->
     <header class="bg-brand-blue text-white shadow-xl sticky top-0 z-50 border-b border-cyan-500/20">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             
@@ -98,22 +98,21 @@
         </div>
     </header>
 
-    <!-- ZPÁTKY VRÁCENÝ GRAFICKÝ BANNER -->
-    <section id="uvod" class="relative bg-brand-dark overflow-hidden shadow-2xl border-b border-cyan-500/30">
-        <div class="max-w-7xl mx-auto">
-            <div class="w-full">
-                <img src="banner-pc.png" alt="Počítačový kurz pro seniory" class="w-full h-auto object-cover max-h-[500px]">
+    <!-- REKLAMNÍ PROSTOR UMÍSTĚNÝ NAHORU (MÍSTO PŮVODNÍHO MODRÉHO PRUHU S IKONOU) -->
+    <section class="max-w-7xl mx-auto px-4 pt-4">
+        <div id="ad-space" class="w-full bg-slate-200 border-2 border-dashed border-slate-300 rounded-2xl p-4 text-center text-slate-500 shadow-inner flex flex-col items-center justify-center min-h-[90px]">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-0.5">📢 Reklamní partner</span>
+            <div id="ad-content" class="w-full">
+                <p class="text-xs font-medium text-slate-600">Zde může být umístěna vaše reklama nebo partnerský banner.</p>
             </div>
         </div>
     </section>
 
-    <!-- REKLAMNÍ PROSTOR UMÍSTĚNÝ MÍSTO PŮVODNÍ IKONY POČÍTAČE -->
-    <section class="max-w-7xl mx-auto px-4 pt-6">
-        <div id="ad-space" class="w-full bg-slate-200 border-2 border-dashed border-slate-300 rounded-3xl p-6 text-center text-slate-500 shadow-inner flex flex-col items-center justify-center min-h-[120px]">
-            <span class="text-xs uppercase font-bold tracking-wider text-slate-400 mb-1">📢 Reklamní partner</span>
-            <div id="ad-content" class="w-full">
-                <!-- Výchozí placeholder reklamy, lze přepsat v adminu -->
-                <p class="text-sm font-medium text-slate-600">Zde může být umístěna vaše reklama nebo partnerský banner.</p>
+    <!-- HLAVNÍ GRAFICKÝ BANNER S PRAROJIČI -->
+    <section id="uvod" class="relative bg-brand-dark overflow-hidden shadow-2xl border-b border-cyan-500/30 mt-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="w-full">
+                <img src="banner-pc.png" alt="Počítačový kurz pro seniory" class="w-full h-auto object-cover max-h-[500px]">
             </div>
         </div>
     </section>
@@ -288,7 +287,7 @@
                     <li><a href="#uvod" class="hover:text-white">Úvodní stránka</a></li>
                     <li><a href="#kurz" class="hover:text-white">Seznam kapitol</a></li>
                     <li><a href="#knihanavstev" class="hover:text-white">Kniha návštěv</a></li>
-                    <li><a href="admin.html" class="text-cyan-400 hover:underline">PWA Administrace</a></li>
+                    <li><a href="admin.html" class="text-cyan-300 hover:underline">PWA Administrace</a></li>
                 </ul>
             </div>
             <div class="space-y-3">
