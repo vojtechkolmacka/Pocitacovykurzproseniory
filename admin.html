@@ -113,15 +113,15 @@
     </div>
 
     <script>
-        // Trvalý token přímo v kódu – nemůže nikdy zmizet smazáním cache prohlížeče
-        const GITHUB_ADMIN_TOKEN = "kolobeznik2026";
+        // Správné heslo zadané uživatelem
+        const GITHUB_ADMIN_TOKEN = "Mauretania2*";
 
         function verifyAndEnter() {
             const val = document.getElementById('admin-token-input').value.trim();
             if(val === GITHUB_ADMIN_TOKEN) {
                 unlockAdmin();
             } else {
-                alert('Nesprávný token!');
+                alert('Nesprávný token / heslo!');
             }
         }
 
@@ -132,14 +132,13 @@
         }
 
         function lockAdmin() {
-            location.href = window.location.pathname; // Vymaže token z URL a uzamkne
+            location.href = window.location.pathname;
         }
 
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const tokenParam = urlParams.get('token');
 
-            // Pokud je token v adrese správný, pustí tě to rovnou dovnitř
             if (tokenParam === GITHUB_ADMIN_TOKEN) {
                 unlockAdmin();
             }
@@ -207,4 +206,125 @@
         }
 
         function saveCourse() {
+            const cat = document.getElementById('course-cat').value;
+            const title = document.getElementById('course-title').value;
+            const desc = document.getElementById('course-desc').value;
+            const editIdx = parseInt(document.getElementById('edit-index').value);
+
+            if(!title) {
+                alert('Vyplň název kurzu/článku!');
+                return;
+            }
+
+            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
             
+            if(editIdx === -1) {
+                courses.push({cat, title, desc});
+                alert('Článek / kurz byl úspěšně přidán!');
+            } else {
+                courses[editIdx] = {cat, title, desc};
+                alert('Článek / kurz byl úspěšně upraven!');
+                resetCourseForm();
+            }
+
+            localStorage.setItem('site_courses', JSON.stringify(courses));
+            document.getElementById('course-title').value = '';
+            document.getElementById('course-desc').value = '';
+            renderCoursesList();
+        }
+
+        function editCourse(index) {
+            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+            const c = courses[index];
+            document.getElementById('course-cat').value = c.cat;
+            document.getElementById('course-title').value = c.title;
+            document.getElementById('course-desc').value = c.desc;
+            document.getElementById('edit-index').value = index;
+            
+            document.getElementById('form-mode-title').innerText = "✏️ Upravit článek / kurz:";
+            document.getElementById('save-course-btn').innerText = "Uložit změny";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            window.scrollTo({top: 400, behavior: 'smooth'});
+        }
+
+        function resetCourseForm() {
+            document.getElementById('course-title').value = '';
+            document.getElementById('course-desc').value = '';
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('form-mode-title').innerText = "➕ Přidat nový kurz / článek:";
+            document.getElementById('save-course-btn').innerText = "Uložit článek";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function deleteCourse(index) {
+            if(confirm('Opravdu chceš tento článek smazat?')) {
+                let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+                courses.splice(index, 1);
+                localStorage.setItem('site_courses', JSON.stringify(courses));
+                renderCoursesList();
+                alert('Položka byla smazána.');
+            }
+        }
+
+        function renderCoursesList() {
+            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+            let html = '';
+            
+            if(courses.length === 0) {
+                html = '<p class="text-xs text-slate-500">Zatím nebyly přidány žádné vlastní články.</p>';
+            }
+
+            courses.forEach((c, idx) => {
+                html += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex justify-between items-center text-xs">
+                    <div>
+                        <span class="text-cyan-400 font-bold">[${c.cat}]</span> ${c.title}
+                    </div>
+                    <div class="flex gap-1">
+                        <button onclick="editCourse(${idx})" class="bg-blue-600 hover:bg-blue-700 text-white px-2.5 py-1 rounded-lg">Upravit</button>
+                        <button onclick="deleteCourse(${idx})" class="bg-rose-600 hover:bg-rose-700 text-white px-2.5 py-1 rounded-lg">Smazat</button>
+                    </div>
+                </div>`;
+            });
+
+            document.getElementById('admin-courses-list').innerHTML = html;
+        }
+
+        function convertImage() {
+            const fileInput = document.getElementById('image-file');
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const htmlCode = `<img src="${e.target.result}" alt="Obrázek" class="w-full rounded-2xl my-3 shadow">`;
+                    document.getElementById('media-code-result').value = htmlCode;
+                    alert('Kód obrázku vygenerován!');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('Nejprve vyber obrázek z galerie v mobilu.');
+            }
+        }
+
+        function convertYoutube() {
+            let url = document.getElementById('youtube-url').value.trim();
+            if(!url) { alert('Vlož odkaz na YouTube!'); return; }
+            if(url.includes('youtu.be/')) {
+                url = url.split('youtu.be/')[1].split('?')[0];
+            } else if(url.includes('watch?v=')) {
+                url = url.split('watch?v=')[1].split('&')[0];
+            }
+            const embedCode = `<div class="relative w-full overflow-hidden rounded-2xl my-3 shadow" style="padding-top: 56.25%;"><iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${url}" frameborder="0" allowfullscreen></iframe></div>`;
+            document.getElementById('media-code-result').value = embedCode;
+            alert('Kód YouTube videa vygenerován!');
+        }
+
+        function convertLink() {
+            const url = document.getElementById('inline-link-url').value.trim();
+            const text = document.getElementById('inline-link-text').value.trim();
+            if(!url || !text) { alert('Vyplň URL i text odkazu!'); return; }
+            const linkCode = `<a href="${url}" target="_blank" class="text-cyan-600 font-bold underline hover:text-cyan-800">${text}</a>`;
+            document.getElementById('media-code-result').value = linkCode;
+            alert('HTML odkaz vygenerován!');
+        }
+    </script>
+</body>
+</html>
