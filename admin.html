@@ -9,13 +9,13 @@
 </head>
 <body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4 pb-20">
 
-    <!-- LOGIN OVERLAY (ZABEZPEČENÍ HESLEM) -->
+    <!-- LOGIN MODAL (Zobrazeno pouze pokud chybí platný token) -->
     <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
             <h2 class="text-lg font-black text-cyan-400">🔒 Zabezpečená administrace</h2>
-            <p class="text-xs text-slate-400">Zadej administrátorské heslo pro vstup:</p>
-            <input type="password" id="admin-password" placeholder="Heslo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
-            <button onclick="checkPassword()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Vstoupit do administrace</button>
+            <p class="text-xs text-slate-400">Zadej administrátorský token nebo heslo:</p>
+            <input type="password" id="admin-token-input" placeholder="Token / heslo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
+            <button onclick="verifyAndEnter()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Vstoupit</button>
             <br>
             <a href="index.html" class="text-xs text-slate-500 hover:underline inline-block mt-2">← Zpět na veřejný web</a>
         </div>
@@ -30,7 +30,7 @@
                 <p class="text-xs text-slate-400">Plná správa obsahu, kurzů, kategorií a reklam</p>
             </div>
             <div class="flex gap-2">
-                <button onclick="logoutAdmin()" class="bg-rose-900/60 hover:bg-rose-800 text-rose-200 text-xs px-3 py-2 rounded-xl border border-rose-700">Odhlásit</button>
+                <button onclick="lockAdmin()" class="bg-rose-900/60 hover:bg-rose-800 text-rose-200 text-xs px-3 py-2 rounded-xl border border-rose-700">Zasunout / Uzamknout</button>
                 <a href="index.html" class="bg-slate-800 text-cyan-300 text-xs px-3 py-2 rounded-xl border border-slate-700">← Web</a>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <button onclick="saveContacts()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 rounded-xl text-sm transition">Uložit kontakty</button>
         </div>
 
-        <!-- SPRÁVA KURZŮ, ČLÁNKŮ A KATEGORIÍ (VČETNĚ ÚPRAV AKTUÁLNÍCH) -->
+        <!-- SPRÁVA KURZŮ, ČLÁNKŮ A KATEGORIÍ -->
         <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4">
             <h2 class="font-bold text-sm text-cyan-300">📚 Správa kurzů, článků a kategorií</h2>
             
@@ -90,31 +90,39 @@
     </div>
 
     <script>
-        const ADMIN_PASSWORD = "kolobeznik"; // Zde si můžeš heslo kdykoliv změnit
+        // Tvůj tajný token / heslo pro vstup
+        const MASTER_TOKEN = "kolobeznik2026";
 
-        function checkPassword() {
-            const pass = document.getElementById('admin-password').value;
-            if(pass === ADMIN_PASSWORD) {
-                document.getElementById('login-modal').classList.add('hidden');
-                document.getElementById('admin-main-content').classList.remove('hidden');
-                sessionStorage.setItem('admin_logged_in', 'true');
-                loadAdminData();
+        function verifyAndEnter() {
+            const val = document.getElementById('admin-token-input').value;
+            if(val === MASTER_TOKEN) {
+                unlockAdmin();
             } else {
-                alert('Nesprávné heslo!');
+                alert('Nesprávný token!');
             }
         }
 
-        function logoutAdmin() {
-            sessionStorage.removeItem('admin_logged_in');
+        function unlockAdmin() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('admin-main-content').classList.remove('hidden');
+            localStorage.setItem('permanent_admin_unlocked', 'true');
+            loadAdminData();
+        }
+
+        function lockAdmin() {
+            localStorage.removeItem('permanent_admin_unlocked');
             location.reload();
         }
 
         window.onload = function() {
-            // Používáme sessionStorage, takže po zavření prohlížeče nebo odhlášení to po něm bude chtít heslo znova
-            if(sessionStorage.getItem('admin_logged_in') === 'true') {
-                document.getElementById('login-modal').classList.add('hidden');
-                document.getElementById('admin-main-content').classList.remove('hidden');
-                loadAdminData();
+            // Kontrola URL parametru (např. admin.html?token=kolobeznik2026)
+            const urlParams = new URLSearchParams(window.location.search);
+            const tokenParam = urlParams.get('token');
+
+            if (tokenParam === MASTER_TOKEN) {
+                unlockAdmin();
+            } else if (localStorage.getItem('permanent_admin_unlocked') === 'true') {
+                unlockAdmin();
             }
         }
 
@@ -171,7 +179,6 @@
         function renderCoursesList() {
             let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
             let html = '';
-            // Výchozí 4 základní kapitoly webu
             let defaults = [
                 {cat: 'Základy', title: '0. Popis PC a jeho součástí'},
                 {cat: 'Základy', title: '1. Základní obsluha'},
