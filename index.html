@@ -61,7 +61,7 @@
         </div>
     </section>
 
-    <!-- HLAVNÍ NAVIGAČNÍ LIŠTA (Čistá, pod reklamou, s klasickými záložkami a funkčním menu) -->
+    <!-- HLAVNÍ NAVIGAČNÍ LIŠTA -->
     <header class="bg-brand-blue text-white shadow-xl sticky top-0 z-50 border-b border-cyan-500/20 mt-3">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <!-- Desktop Menu (Záložky přepínající sekce) -->
+            <!-- Desktop Menu (Záložky) -->
             <nav class="hidden md:flex items-center gap-2 font-semibold text-sm">
                 <button onclick="switchSection('uvod')" id="tab-uvod" class="nav-tab px-3 py-2 rounded-xl text-cyan-300 bg-blue-900/60 transition">Úvod</button>
                 <button onclick="switchSection('kurz')" id="tab-kurz" class="nav-tab px-3 py-2 rounded-xl hover:bg-blue-900/40 text-white transition">Kurz</button>
@@ -89,13 +89,13 @@
 
             <!-- Mobilní hamburger tlačítko -->
             <button onclick="toggleMobileMenu()" id="menu-btn" class="md:hidden text-white focus:outline-none p-2.5 bg-blue-900/80 rounded-xl border border-blue-700 shadow">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
 
-        <!-- Rozbalovací mobilní menu (přepínající sekce) -->
+        <!-- Rozbalovací mobilní menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-blue-950 border-t border-blue-900 px-4 pt-3 pb-5 space-y-2 text-sm shadow-2xl z-50">
             <button onclick="switchSection('uvod'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">🏠 Úvod</button>
             <button onclick="switchSection('kurz'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-blue-900 text-white">📚 Počítačový kurz</button>
@@ -106,12 +106,11 @@
         </div>
     </header>
 
-    <!-- HLAVNÍ OBSAH (Rozdělený do samostatných stránek/sekcí) -->
+    <!-- HLAVNÍ OBSAH (Samostatné stránky/sekce) -->
     <main class="max-w-7xl mx-auto px-4 py-10">
         
-        <!-- SEKCE 1: ÚVOD (S bannerem s prarodiči) -->
+        <!-- SEKCE 1: ÚVOD -->
         <div id="section-uvod" class="page-section space-y-12">
-            <!-- Grafický banner s prarodiči -->
             <div class="relative bg-brand-dark overflow-hidden shadow-2xl rounded-3xl border border-cyan-500/30">
                 <img src="banner-pc.png" alt="Počítačový kurz pro seniory" class="w-full h-auto object-cover max-h-[500px]">
             </div>
@@ -125,7 +124,7 @@
             </div>
         </div>
 
-        <!-- SEKCE 2: KURZ (Seznam kapitol) -->
+        <!-- SEKCE 2: KURZ -->
         <div id="section-kurz" class="page-section space-y-8 hidden">
             <div class="text-center max-w-2xl mx-auto space-y-3">
                 <h2 class="text-3xl font-black text-slate-900">Počítačový kurz krok za krokem</h2>
@@ -181,7 +180,7 @@
                     </button>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEKCE 3: SLOVNÍČEK -->
         <div id="section-slovnicek" class="page-section space-y-6 hidden">
@@ -291,4 +290,204 @@
             <div id="modal-content" class="space-y-4"></div>
 
             <div class="bg-cyan-50 border border-cyan-200 p-4 rounded-2xl space-y-3">
-                <button onclick="toggleSimplerExplanation()" class="w-full bg-cyan-
+                <button onclick="toggleSimplerExplanation()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2 text-base">
+                    <span>💡 Vysvětli mi to ještě jednodušeji</span>
+                </button>
+                <div id="simpler-explanation-box" class="hidden bg-white p-4 rounded-xl border border-cyan-300 text-sm text-slate-700 space-y-2">
+                    <h4 class="font-bold text-cyan-900">Zjednodušený výklad:</h4>
+                    <p id="simpler-text"></p>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t border-slate-100">
+                <button onclick="closeLesson()" class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition">Zavřít lekci</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PATIČKA -->
+    <footer id="kontakt" class="bg-brand-dark text-white py-12 border-t border-slate-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-cyan-400">PC pro seniory</h3>
+                <p class="text-sm text-slate-400">Trpělivá škola moderních technologií. Vše vysvětlujeme klidně a srozumitelně.</p>
+            </div>
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-white">Rychlé odkazy</h3>
+                <ul class="text-sm text-slate-400 space-y-1">
+                    <li><a href="#" onclick="switchSection('uvod')" class="hover:text-white">Úvodní stránka</a></li>
+                    <li><a href="#" onclick="switchSection('kurz')" class="hover:text-white">Seznam kapitol</a></li>
+                    <li><a href="#" onclick="switchSection('knihanavstev')" class="hover:text-white">Kniha návštěv</a></li>
+                    <li><a href="admin.html" class="text-cyan-300 hover:underline">PWA Administrace</a></li>
+                </ul>
+            </div>
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-white">Kontakt</h3>
+                <p class="text-cyan-300 font-bold">E-mail: podpora@pcproseniory.cz</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 pt-8 mt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            © 2026 PC pro seniory. Všechna práva vyhrazena.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT PRO PŘEPÍNÁNÍ SEKCÍ -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Funkce pro přepínání stránek (sekcí)
+        function switchSection(sectionId) {
+            // Skrýt všechny sekce
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            // Zobrazit požadovanou sekci
+            const target = document.getElementById('section-' + sectionId);
+            if(target) {
+                target.classList.remove('hidden');
+            }
+
+            // Aktualizovat aktivní záložku v desktop menu
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(t => {
+                t.classList.remove('bg-blue-900/60', 'text-cyan-300');
+                t.classList.add('text-white');
+            });
+            const activeTab = document.getElementById('tab-' + sectionId);
+            if(activeTab) {
+                activeTab.classList.add('bg-blue-900/60', 'text-cyan-300');
+            }
+
+            // Posunout nahoru na začátek stránky
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        let currentScale = 1;
+        function changeFontSize(direction) {
+            currentScale += direction * 0.1;
+            if (currentScale < 0.95) currentScale = 0.95;
+            if (currentScale > 1.35) currentScale = 1.35;
+            document.body.style.fontSize = currentScale + 'rem';
+        }
+
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function filterGlossary() {
+            const input = document.getElementById('glossary-search').value.toLowerCase();
+            const list = document.getElementById('glossary-list').children;
+            for (let item of list) {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(input) ? 'block' : 'none';
+            }
+        }
+
+        window.onload = function() {
+            let count = localStorage.getItem('site_visitors') || 1240;
+            count = parseInt(count) + 1;
+            localStorage.setItem('site_visitors', count);
+            document.getElementById('visitor-count').innerText = count;
+
+            loadAdminData();
+        }
+
+        function loadAdminData() {
+            const savedAd = localStorage.getItem('site_ad_html');
+            if(savedAd) {
+                document.getElementById('ad-content').innerHTML = savedAd;
+            }
+
+            const savedLinks = JSON.parse(localStorage.getItem('site_links') || '[]');
+            if(savedLinks.length > 0) {
+                let html = '';
+                savedLinks.forEach(l => {
+                    html += `<a href="${l.url}" target="_blank" class="block p-4 rounded-xl border border-slate-200 hover:border-cyan-500 hover:shadow transition bg-slate-50">
+                        <h3 class="font-bold text-blue-900">${l.title}</h3>
+                        <p class="text-xs text-slate-600 mt-1">${l.desc || ''}</p>
+                    </a>`;
+                });
+                document.getElementById('links-container').innerHTML = html;
+            }
+
+            const savedGb = JSON.parse(localStorage.getItem('site_guestbook') || '[]');
+            if(savedGb.length > 0) {
+                let html = '';
+                savedGb.forEach(g => {
+                    html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <p class="font-bold text-slate-900 text-sm">${g.name}</p>
+                        <p class="text-sm text-slate-700 mt-1">${g.msg}</p>
+                    </div>`;
+                });
+                html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-slate-900 text-sm">Marie Novotná</p>
+                    <p class="text-sm text-slate-700 mt-1">Mockrát děkuji za skvělé a srozumitelné návody!</p>
+                </div>`;
+                document.getElementById('guestbook-list').innerHTML = html;
+            }
+        }
+
+        function addGuestbookEntry(e) {
+            e.preventDefault();
+            const name = document.getElementById('gb-name').value;
+            const msg = document.getElementById('gb-message').value;
+            let gb = JSON.parse(localStorage.getItem('site_guestbook') || '[]');
+            gb.unshift({name, msg});
+            localStorage.setItem('site_guestbook', JSON.stringify(gb));
+            alert('Vzkaz byl úspěšně přidán do knihy návštěv!');
+            document.getElementById('gb-name').value = '';
+            document.getElementById('gb-message').value = '';
+            loadAdminData();
+        }
+
+        const lessonsData = {
+            'kapitola-0': {
+                title: '0. Popis PC a jeho součástí',
+                text: 'Velká bedna (skříň počítače) je mozek celého zařízení. Zvenku najdete hlavní vypínač, otvory pro USB paměti a připojení pro sluchátka.',
+                simpler: 'Představte si počítačovou skříň jako velkou krabici od bot, ve které bydlí hodný trpaslík.'
+            },
+            'kapitola-1': {
+                title: '1. Základní obsluha počítače',
+                text: 'Pohodlně se usaďte, nastavte si výšku židle tak, abyste měli ruce v rovině stolu. S myší pracujte volně v dlaní.',
+                simpler: 'Když sedíte u počítače, seďte rovně jako u stolu při obědě.'
+            },
+            'kapitola-2': {
+                title: '2. Seznámení s OS Windows',
+                text: 'Na obrazovce (ploše) vidíte malé obrázky neboli ikony. Kliknutím dvakrát za sebou program otevřete.',
+                simpler: 'Plocha počítače je jako váš pracovní stůl.'
+            },
+            'kapitola-3': {
+                title: '3. Složky a soubory',
+                text: 'Abychom měli ve fotografiích pořádek, ukládáme je do složek.',
+                simpler: 'Složka je jako obálka na fotky.'
+            }
+        };
+
+        function openLesson(lessonKey) {
+            const data = lessonsData[lessonKey] || { title: 'Lekce', text: 'Obsah lekce se připravuje.', simpler: 'Tohle téma brzy doplníme.' };
+            document.getElementById('modal-content').innerHTML = `
+                <h3 class="text-2xl font-black text-slate-900">${data.title}</h3>
+                <p class="text-slate-700 leading-relaxed text-lg">${data.text}</p>
+            `;
+            document.getElementById('simpler-text').innerText = data.simpler;
+            document.getElementById('simpler-explanation-box').classList.add('hidden');
+            document.getElementById('lesson-modal').classList.remove('hidden');
+        }
+
+        function closeLesson() {
+            document.getElementById('lesson-modal').classList.add('hidden');
+        }
+
+        function toggleSimplerExplanation() {
+            document.getElementById('simpler-explanation-box').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
