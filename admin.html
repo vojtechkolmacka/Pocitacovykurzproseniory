@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zabezpečená PWA Administrace – PC pro seniory</title>
+    <title>Pokročilá PWA Administrace – PC pro seniory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUENicm9zZW5pb3J5IEFkbWluIiwic2hvcnRfbmFtZSI6IkFkbWluIiwic3RhcnRfdXJsIjoiL2FkbWluaHRtbCIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwYTI1NDAifQ==">
 </head>
-<body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4 pb-20">
+<body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4 pb-24">
 
-    <!-- LOGIN MODAL (Zobrazeno pouze pokud chybí platný token) -->
+    <!-- LOGIN MODAL -->
     <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
             <h2 class="text-lg font-black text-cyan-400">🔒 Zabezpečená administrace</h2>
@@ -27,10 +27,10 @@
         <div class="flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-black text-cyan-400">🔐 PWA Administrace portálu</h1>
-                <p class="text-xs text-slate-400">Plná správa obsahu, kurzů, kategorií a reklam</p>
+                <p class="text-xs text-slate-400">Plná správa kategorií, kurzů, článků a médií</p>
             </div>
             <div class="flex gap-2">
-                <button onclick="lockAdmin()" class="bg-rose-900/60 hover:bg-rose-800 text-rose-200 text-xs px-3 py-2 rounded-xl border border-rose-700">Zasunout / Uzamknout</button>
+                <button onclick="lockAdmin()" class="bg-rose-900/60 hover:bg-rose-800 text-rose-200 text-xs px-3 py-2 rounded-xl border border-rose-700">Uzamknout</button>
                 <a href="index.html" class="bg-slate-800 text-cyan-300 text-xs px-3 py-2 rounded-xl border border-slate-700">← Web</a>
             </div>
         </div>
@@ -45,194 +45,66 @@
         <!-- Správa kontaktů a podpory -->
         <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-3">
             <h2 class="font-bold text-sm text-cyan-300">📧 Úprava e-mailu a kontaktů v patičce</h2>
-            <input type="text" id="admin-email" placeholder="E-mail (např. podpora@pcproseniory.cz)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+            <input type="text" id="admin-email" placeholder="E-mail" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
             <input type="text" id="admin-support-text" placeholder="Text podpory" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
             <button onclick="saveContacts()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 rounded-xl text-sm transition">Uložit kontakty</button>
         </div>
 
-        <!-- SPRÁVA KURZŮ, ČLÁNKŮ A KATEGORIÍ -->
+        <!-- SPRÁVA KATEGORIÍ -->
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-3">
+            <h2 class="font-bold text-sm text-cyan-300">📁 Správa kategorií</h2>
+            <div class="flex gap-2">
+                <input type="text" id="new-category-name" placeholder="Nová kategorie (např. Tablet, Bezpečnost...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+                <button onclick="addCategory()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-sm whitespace-nowrap">Přidat</button>
+            </div>
+            <div id="admin-categories-list" class="flex flex-wrap gap-2 pt-2">
+                <!-- Seznam kategorií -->
+            </div>
+        </div>
+
+        <!-- SPRÁVA KURZŮ A ČLÁNKŮ (S MOŽNOSTÍ EDITACE A MAZÁNÍ) -->
         <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4">
-            <h2 class="font-bold text-sm text-cyan-300">📚 Správa kurzů, článků a kategorií</h2>
+            <h2 class="font-bold text-sm text-cyan-300">📚 Správa kurzů a článků</h2>
             
-            <div class="space-y-2 border-b border-slate-700 pb-4">
-                <p class="text-xs text-slate-400 font-semibold">Přidat nový kurz / článek:</p>
-                <input type="text" id="course-cat" placeholder="Kategorie (např. Základy PC, Internet...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+            <div class="space-y-2 border-b border-slate-700 pb-4 bg-slate-900/50 p-4 rounded-xl">
+                <p class="text-xs text-cyan-400 font-bold" id="form-mode-title">➕ Přidat nový kurz / článek:</p>
+                <input type="hidden" id="edit-index" value="-1">
+                <select id="course-cat" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+                    <option value="Základy">Základy</option>
+                </select>
                 <input type="text" id="course-title" placeholder="Název kurzu / článku" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
-                <textarea id="course-desc" rows="3" placeholder="Krátký popis nebo obsah (může obsahovat HTML)..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white"></textarea>
-                <button onclick="addCourse()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-sm transition">Přidat kurz / článek</button>
+                <textarea id="course-desc" rows="4" placeholder="Obsah článku (podporuje HTML tagy pro obrázky, odkazy i videa)..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-mono text-xs"></textarea>
+                <div class="flex gap-2">
+                    <button onclick="saveCourse()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-sm transition" id="save-course-btn">Uložit článek</button>
+                    <button onclick="resetCourseForm()" class="hidden bg-slate-700 hover:bg-slate-600 text-white font-bold px-4 py-2 rounded-xl text-sm transition" id="cancel-edit-btn">Zrušit</button>
+                </div>
             </div>
 
             <div class="space-y-2">
-                <p class="text-xs text-slate-400 font-semibold">Seznam všech kurzů a článků (možnost správy a mazání):</p>
+                <p class="text-xs text-slate-400 font-semibold">Seznam vytvořených článků a kurzů:</p>
                 <div id="admin-courses-list" class="space-y-2 max-h-60 overflow-y-auto">
-                    <!-- Načte se dynamicky -->
+                    <!-- Seznam článků -->
                 </div>
             </div>
         </div>
 
-        <!-- Přidání odkazu na jiný web -->
-        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-3">
-            <h2 class="font-bold text-sm text-cyan-300">🔗 Přidat doporučený odkaz na web</h2>
-            <input type="text" id="link-title" placeholder="Název webu" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
-            <input type="text" id="link-url" placeholder="URL adresa (https://...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
-            <input type="text" id="link-desc" placeholder="Krátký popis" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
-            <button onclick="addLink()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-sm transition">Přidat odkaz</button>
-        </div>
+        <!-- GENERÁTOR MÉDIÍ PŘÍMO Z MOBILU (Obrázky, Odkazy, Videa) -->
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4">
+            <h2 class="font-bold text-sm text-cyan-300">🖼️ Generátor prvků do textu článku</h2>
+            
+            <div class="space-y-2">
+                <p class="text-xs text-slate-400">1. Vložit obrázek z galerie v mobilu:</p>
+                <input type="file" id="image-file" accept="image/*" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-cyan-600 file:text-white hover:file:bg-cyan-700">
+                <button onclick="convertImage()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-xs transition">Generovat kód obrázku</button>
+            </div>
 
-        <!-- Generátor obrázků / videí -->
-        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-3">
-            <h2 class="font-bold text-sm text-cyan-300">🖼️ Vložit obrázek nebo video do článku</h2>
-            <input type="file" id="image-file" accept="image/*" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-cyan-600 file:text-white hover:file:bg-cyan-700">
-            <button onclick="convertImage()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-sm transition">Generovat kód obrázku</button>
-            <textarea id="media-code-result" readonly placeholder="Zde se objeví HTML kód..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-300 h-20"></textarea>
-        </div>
+            <div class="space-y-2 pt-2 border-t border-slate-700">
+                <p class="text-xs text-slate-400">2. Vložit YouTube video okno:</p>
+                <input type="text" id="youtube-url" placeholder="Odkaz na YouTube video (např. https://youtu.be/...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white">
+                <button onclick="convertYoutube()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition">Generovat kód videa</button>
+            </div>
 
-    </div>
-
-    <script>
-        // Tvůj tajný token / heslo pro vstup
-        const MASTER_TOKEN = "kolobeznik2026";
-
-        function verifyAndEnter() {
-            const val = document.getElementById('admin-token-input').value;
-            if(val === MASTER_TOKEN) {
-                unlockAdmin();
-            } else {
-                alert('Nesprávný token!');
-            }
-        }
-
-        function unlockAdmin() {
-            document.getElementById('login-modal').classList.add('hidden');
-            document.getElementById('admin-main-content').classList.remove('hidden');
-            localStorage.setItem('permanent_admin_unlocked', 'true');
-            loadAdminData();
-        }
-
-        function lockAdmin() {
-            localStorage.removeItem('permanent_admin_unlocked');
-            location.reload();
-        }
-
-        window.onload = function() {
-            // Kontrola URL parametru (např. admin.html?token=kolobeznik2026)
-            const urlParams = new URLSearchParams(window.location.search);
-            const tokenParam = urlParams.get('token');
-
-            if (tokenParam === MASTER_TOKEN) {
-                unlockAdmin();
-            } else if (localStorage.getItem('permanent_admin_unlocked') === 'true') {
-                unlockAdmin();
-            }
-        }
-
-        function loadAdminData() {
-            if(localStorage.getItem('site_ad_html')) {
-                document.getElementById('admin-ad').value = localStorage.getItem('site_ad_html');
-            }
-            if(localStorage.getItem('site_support_email')) {
-                document.getElementById('admin-email').value = localStorage.getItem('site_support_email');
-            }
-            if(localStorage.getItem('site_support_text')) {
-                document.getElementById('admin-support-text').value = localStorage.getItem('site_support_text');
-            }
-            renderCoursesList();
-        }
-
-        function saveAd() {
-            localStorage.setItem('site_ad_html', document.getElementById('admin-ad').value);
-            alert('Reklamní box byl aktualizován!');
-        }
-
-        function saveContacts() {
-            localStorage.setItem('site_support_email', document.getElementById('admin-email').value);
-            localStorage.setItem('site_support_text', document.getElementById('admin-support-text').value);
-            alert('Kontakty uloženy!');
-        }
-
-        function addCourse() {
-            const cat = document.getElementById('course-cat').value;
-            const title = document.getElementById('course-title').value;
-            const desc = document.getElementById('course-desc').value;
-            if(!title) {
-                alert('Vyplň název kurzu/článku!');
-                return;
-            }
-            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
-            courses.push({cat: cat || 'Obecné', title, desc});
-            localStorage.setItem('site_courses', JSON.stringify(courses));
-            alert('Kurz / článek byl přidán!');
-            document.getElementById('course-cat').value = '';
-            document.getElementById('course-title').value = '';
-            document.getElementById('course-desc').value = '';
-            renderCoursesList();
-        }
-
-        function deleteCourse(index) {
-            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
-            courses.splice(index, 1);
-            localStorage.setItem('site_courses', JSON.stringify(courses));
-            renderCoursesList();
-            alert('Položka byla smazána.');
-        }
-
-        function renderCoursesList() {
-            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
-            let html = '';
-            let defaults = [
-                {cat: 'Základy', title: '0. Popis PC a jeho součástí'},
-                {cat: 'Základy', title: '1. Základní obsluha'},
-                {cat: 'Základy', title: '2. Seznámení s OS Windows'},
-                {cat: 'Základy', title: '3. Složky a soubory'}
-            ];
-
-            defaults.forEach(d => {
-                html += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex justify-between items-center text-xs opacity-75">
-                    <div><span class="text-slate-400 font-bold">[Základní kurz]</span> ${d.title}</div>
-                    <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-400">Výchozí</span>
-                </div>`;
-            });
-
-            courses.forEach((c, idx) => {
-                html += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex justify-between items-center text-xs">
-                    <div>
-                        <span class="text-cyan-400 font-bold">[${c.cat}]</span> ${c.title}
-                    </div>
-                    <button onclick="deleteCourse(${idx})" class="bg-rose-600 hover:bg-rose-700 text-white px-2 py-1 rounded-lg">Smazat</button>
-                </div>`;
-            });
-
-            document.getElementById('admin-courses-list').innerHTML = html;
-        }
-
-        function addLink() {
-            const title = document.getElementById('link-title').value;
-            const url = document.getElementById('link-url').value;
-            const desc = document.getElementById('link-desc').value;
-            if(!title || !url) { alert('Vyplň název i URL!'); return; }
-            let links = JSON.parse(localStorage.getItem('site_links') || '[]');
-            links.push({title, url, desc});
-            localStorage.setItem('site_links', JSON.stringify(links));
-            alert('Odkaz přidán!');
-            document.getElementById('link-title').value = '';
-            document.getElementById('link-url').value = '';
-            document.getElementById('link-desc').value = '';
-        }
-
-        function convertImage() {
-            const fileInput = document.getElementById('image-file');
-            if(fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const htmlCode = `<img src="${e.target.result}" alt="Obrázek" class="w-full rounded-2xl my-3 shadow">`;
-                    document.getElementById('media-code-result').value = htmlCode;
-                    alert('Kód obrázku vygenerován!');
-                }
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert('Vyber obrázek.');
-            }
-        }
-    </script>
-</body>
-</html>
+            <div class="space-y-2 pt-2 border-t border-slate-700">
+                <p class="text-xs text-slate-400">3. Vložit odkaz na jinou stránku:</p>
+                <input type="text" id="inline-link-url" placeholder="URL adresa (https://...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white mb-1">
+                <input type="text" id="inline-link-text" placeholder="Text odkazu (např. Navštívit Seznam)" class="w-full bg-slate
