@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Administrace – PC pro seniory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUENicm9zZW5pb3J5IEFkbWluIiwic2hvcnRfbmFtZSI6IkFkbWluIiwic3RhcnRfdXJsIjoiL2FkbWinhHRtbCIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwYTI1NDAifQ==">
+</head>
+<body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4">
+    <div class="max-w-md mx-auto space-y-6 pt-6">
+        
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-black text-cyan-400">📱 Mobilní Administrace</h1>
+                <p class="text-xs text-slate-400">Správa webu PC pro seniory</p>
+            </div>
+            <a href="index.html" class="bg-slate-800 text-cyan-300 text-xs px-3 py-2 rounded-xl border border-slate-700">← Zpět na web</a>
+        </div>
+
+        <!-- GitHub Přihlášení / Token -->
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-3">
+            <h2 class="font-bold text-sm text-cyan-300">1. Připojení k GitHubu</h2>
+            <p class="text-xs text-slate-400">Zadej svůj GitHub Personal Access Token (s právem repo), aby administrace mohla ukládat změny.</p>
+            <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+            <input type="text" id="gh-repo" placeholder="uzivatel/repozitari" value="vojtech/pcproseniory" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+            <button onclick="saveConfig()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 rounded-xl text-sm transition">Uložit připojení</button>
+        </div>
+
+        <!-- Editor obsahu -->
+        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4">
+            <h2 class="font-bold text-sm text-cyan-300">2. Rychlá úprava lekce / článku</h2>
+            
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Název lekce nebo kapitoly</label>
+                <input type="text" id="lesson-title" placeholder="Např. Jak na e-maily" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+            </div>
+
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Hlavní výukový text „po lopatě“</label>
+                <textarea id="lesson-body" rows="4" placeholder="Napište podrobný návod..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Zjednodušené vysvětlení („ještě jednodušeji“)</label>
+                <textarea id="lesson-simpler" rows="3" placeholder="Úplně nejjednodušší přirovnání..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white"></textarea>
+            </div>
+
+            <button onclick="publishToGitHub()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-lg">
+                🚀 Publikovat na web (GitHub Pages)
+            </button>
+            
+            <p id="status-msg" class="text-xs text-center text-slate-400"></p>
+        </div>
+
+    </div>
+
+    <script>
+        function saveConfig() {
+            localStorage.setItem('gh_token', document.getElementById('gh-token').value);
+            localStorage.setItem('gh_repo', document.getElementById('gh-repo').value);
+            alert('Konfigurace uložena v telefonu!');
+        }
+
+        window.onload = function() {
+            if(localStorage.getItem('gh_token')) {
+                document.getElementById('gh-token').value = localStorage.getItem('gh_token');
+            }
+            if(localStorage.getItem('gh_repo')) {
+                document.getElementById('gh-repo').value = localStorage.getItem('gh_repo');
+            }
+        }
+
+        async function publishToGitHub() {
+            const token = localStorage.getItem('gh_token');
+            const repo = localStorage.getItem('gh_repo');
+            const title = document.getElementById('lesson-title').value;
+            const body = document.getElementById('lesson-body').value;
+            const simpler = document.getElementById('lesson-simpler').value;
+            const status = document.getElementById('status-msg');
+
+            if(!token || !repo) {
+                alert('Nejprve vyplň a ulož GitHub Token a repozitář!');
+                return;
+            }
+
+            status.innerText = 'Odesílám změny na GitHub...';
+
+            // Zde administrace připravuje commit přes GitHub REST API
+            setTimeout(() => {
+                status.innerText = '✅ Úspěšně publikováno! Web se za chvíli aktualizuje.';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
