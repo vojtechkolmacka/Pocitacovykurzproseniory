@@ -9,8 +9,8 @@
 </head>
 <body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4 pb-24">
 
-    <!-- LOGIN MODAL -->
-    <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <!-- LOGIN MODAL (Zobrazí se jen při prvním vstupu nebo po výslovném uzamčení) -->
+    <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
             <h2 class="text-lg font-black text-cyan-400">🔒 Zabezpečená administrace</h2>
             <p class="text-xs text-slate-400">Zadej administrátorský token:</p>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- HLAVNÍ OBSAH ADMINISTRACE -->
-    <div id="admin-main-content" class="max-w-xl mx-auto space-y-6 pt-6 hidden">
+    <div id="admin-main-content" class="max-w-xl mx-auto space-y-6 pt-6">
         
         <div class="flex justify-between items-center">
             <div>
@@ -113,12 +113,31 @@
     </div>
 
     <script>
-        // Správné heslo zadané uživatelem
-        const GITHUB_ADMIN_TOKEN = "Mauretania2*";
+        const MASTER_TOKEN = "Mauretania2*";
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tokenParam = urlParams.get('token');
+
+            // Pokud je token v adrese, rovnou ho uložíme do paměti zařízení
+            if (tokenParam === MASTER_TOKEN) {
+                localStorage.setItem('admin_token_saved', MASTER_TOKEN);
+            }
+
+            // Ověříme, zda je token uložený v zařízení nebo zda přišel správně
+            if (localStorage.getItem('admin_token_saved') === MASTER_TOKEN) {
+                unlockAdmin();
+            } else {
+                // Pokud není, ukážeme přihlašovací okno
+                document.getElementById('login-modal').classList.remove('hidden');
+            }
+        }
 
         function verifyAndEnter() {
             const val = document.getElementById('admin-token-input').value.trim();
-            if(val === GITHUB_ADMIN_TOKEN) {
+            if(val === MASTER_TOKEN) {
+                localStorage.setItem('admin_token_saved', MASTER_TOKEN);
+                document.getElementById('login-modal').classList.add('hidden');
                 unlockAdmin();
             } else {
                 alert('Nesprávný token / heslo!');
@@ -132,16 +151,8 @@
         }
 
         function lockAdmin() {
-            location.href = window.location.pathname;
-        }
-
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tokenParam = urlParams.get('token');
-
-            if (tokenParam === GITHUB_ADMIN_TOKEN) {
-                unlockAdmin();
-            }
+            localStorage.removeItem('admin_token_saved');
+            location.reload();
         }
 
         function loadAdminData() {
