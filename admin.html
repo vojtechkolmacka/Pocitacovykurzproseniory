@@ -12,7 +12,7 @@
     <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
             <h2 class="text-lg font-black text-cyan-400">🔒 Administrace</h2>
-            <p class="text-xs text-slate-400">Zadej token / heslo:</p>
+            <p class="text-xs text-slate-400">Zadej heslo:</p>
             <input type="password" id="admin-token-input" placeholder="Zadej heslo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
             <button onclick="manualVerify()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Vstoupit</button>
             <br>
@@ -73,7 +73,7 @@
                 
                 <input type="text" id="course-title" placeholder="Název kurzu / článku" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
                 
-                <textarea id="course-desc" rows="6" placeholder="Text článku..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-mono text-xs"></textarea>
+                <textarea id="course-content" rows="6" placeholder="Text článku (zde se propisuje obsah)..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white font-mono text-xs"></textarea>
 
                 <!-- PŘÍMÉ VKLÁDACÍ NÁSTROJE DO TEXTU -->
                 <div class="bg-slate-900 p-3 rounded-xl border border-slate-700 space-y-2">
@@ -116,7 +116,6 @@
     </div>
 
     <script>
-        // Tvoje heslo/token uloženo přímo tady – žádné čekání na GitHub API
         const ADMIN_SECRET = "Mauretania2*";
 
         function manualVerify() {
@@ -141,7 +140,6 @@
         }
 
         window.onload = function() {
-            // Zkontroluje URL parametr (?token=Mauretania2*) nebo uložený stav
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('token') === ADMIN_SECRET) {
                 localStorage.setItem('auth_ok', 'true');
@@ -222,7 +220,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const imgTag = `\n<img src="${e.target.result}" alt="Obrázek" class="w-full rounded-2xl my-3 shadow">\n`;
-                    document.getElementById('course-desc').value += imgTag;
+                    document.getElementById('course-content').value += imgTag;
                     fileInput.value = '';
                     alert('Obrázek byl úspěšně vložen do textu článku!');
                 }
@@ -241,7 +239,7 @@
                 url = url.split('watch?v=')[1].split('&')[0];
             }
             const embedTag = `\n<div class="relative w-full overflow-hidden rounded-2xl my-3 shadow" style="padding-top: 56.25%;"><iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${url}" frameborder="0" allowfullscreen></iframe></div>\n`;
-            document.getElementById('course-desc').value += embedTag;
+            document.getElementById('course-content').value += embedTag;
             document.getElementById('direct-youtube-url').value = '';
             alert('YouTube video bylo úspěšně vloženo do textu článku!');
         }
@@ -250,8 +248,8 @@
             const url = document.getElementById('direct-link-url').value.trim();
             const text = document.getElementById('direct-link-text').value.trim();
             if(!url || !text) { alert('Vyplň URL i text odkazu!'); return; }
-            const linkTag = ` <a href="${url}" target="_blank" class="text-cyan-400 font-bold underline hover:text-cyan-300">${text}</a> `;
-            document.getElementById('course-desc').value += linkTag;
+            const linkTag = ` <a href="${url}" target="_blank" class="text-cyan-600 font-bold underline hover:text-cyan-800">${text}</a> `;
+            document.getElementById('course-content').value += linkTag;
             document.getElementById('direct-link-url').value = '';
             document.getElementById('direct-link-text').value = '';
             alert('Odkaz byl úspěšně vložen do textu článku!');
@@ -260,7 +258,7 @@
         function saveCourse() {
             const cat = document.getElementById('course-cat').value;
             const title = document.getElementById('course-title').value;
-            const desc = document.getElementById('course-desc').value;
+            const content = document.getElementById('course-content').value;
             const editIdx = parseInt(document.getElementById('edit-index').value);
 
             if(!title) {
@@ -271,26 +269,26 @@
             let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
             
             if(editIdx === -1) {
-                courses.push({cat, title, desc});
+                courses.push({cat, title, content});
                 alert('Článek / kurz byl úspěšně přidán!');
             } else {
-                courses[editIdx] = {cat, title, desc};
+                courses[editIdx] = {cat, title, content};
                 alert('Článek / kurz byl úspěšně upraven!');
                 resetCourseForm();
             }
 
             localStorage.setItem('site_courses', JSON.stringify(courses));
             document.getElementById('course-title').value = '';
-            document.getElementById('course-desc').value = '';
+            document.getElementById('course-content').value = '';
             renderCoursesList();
         }
 
         function editCourse(index) {
             let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
             const c = courses[index];
-            document.getElementById('course-cat').value = c.cat;
+            document.getElementById('course-cat').value = c.cat || 'Základy';
             document.getElementById('course-title').value = c.title;
-            document.getElementById('course-desc').value = c.desc;
+            document.getElementById('course-content').value = c.content;
             document.getElementById('edit-index').value = index;
             
             document.getElementById('form-mode-title').innerText = "✏️ Upravit článek / kurz:";
@@ -301,7 +299,7 @@
 
         function resetCourseForm() {
             document.getElementById('course-title').value = '';
-            document.getElementById('course-desc').value = '';
+            document.getElementById('course-content').value = '';
             document.getElementById('edit-index').value = "-1";
             document.getElementById('form-mode-title').innerText = "➕ Přidat nový kurz / článek:";
             document.getElementById('save-course-btn').innerText = "Uložit článek";
@@ -329,7 +327,7 @@
             courses.forEach((c, idx) => {
                 html += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex justify-between items-center text-xs">
                     <div>
-                        <span class="text-cyan-400 font-bold">[${c.cat}]</span> ${c.title}
+                        <span class="text-cyan-400 font-bold">[${c.cat || 'Základy'}]</span> ${c.title}
                     </div>
                     <div class="flex gap-1">
                         <button onclick="editCourse(${idx})" class="bg-blue-600 hover:bg-blue-700 text-white px-2.5 py-1 rounded-lg">Upravit</button>
