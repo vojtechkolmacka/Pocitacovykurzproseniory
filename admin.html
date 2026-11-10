@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Token Administrace – PC pro seniory</title>
+    <title>PWA Administrace – PC pro seniory</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4 pb-24">
@@ -11,10 +11,10 @@
     <!-- LOGIN MODAL -->
     <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
-            <h2 class="text-lg font-black text-cyan-400">🔒 GitHub Přihlášení</h2>
-            <p class="text-xs text-slate-400">Zadej svůj GitHub Personal Access Token:</p>
-            <input type="password" id="admin-token-input" placeholder="ghp_..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
-            <button onclick="manualVerify()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Ověřit a vstoupit</button>
+            <h2 class="text-lg font-black text-cyan-400">🔒 Administrace</h2>
+            <p class="text-xs text-slate-400">Zadej token / heslo:</p>
+            <input type="password" id="admin-token-input" placeholder="Zadej heslo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center focus:outline-none focus:border-cyan-500">
+            <button onclick="manualVerify()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Vstoupit</button>
             <br>
             <a href="index.html" class="text-xs text-slate-500 hover:underline inline-block mt-2">← Zpět na veřejný web</a>
         </div>
@@ -116,29 +116,16 @@
     </div>
 
     <script>
-        async function verifyGitHubToken(token) {
-            if (!token) return false;
-            try {
-                const response = await fetch('https://api.github.com/user', {
-                    headers: { 'Authorization': `token ${token}` }
-                });
-                if (response.ok) {
-                    localStorage.setItem('gh_admin_token', token);
-                    return true;
-                }
-            } catch (e) {
-                console.error(e);
-            }
-            return false;
-        }
+        // Tvoje heslo/token uloženo přímo tady – žádné čekání na GitHub API
+        const ADMIN_SECRET = "Mauretania2*";
 
-        async function manualVerify() {
-            const token = document.getElementById('admin-token-input').value.trim();
-            const success = await verifyGitHubToken(token);
-            if (success) {
+        function manualVerify() {
+            const val = document.getElementById('admin-token-input').value.trim();
+            if (val === ADMIN_SECRET) {
+                localStorage.setItem('auth_ok', 'true');
                 unlockAdmin();
             } else {
-                alert('Neplatný GitHub token!');
+                alert('Nesprávné heslo!');
             }
         }
 
@@ -149,18 +136,18 @@
         }
 
         function lockAdmin() {
-            localStorage.removeItem('gh_admin_token');
-            location.href = window.location.pathname;
+            localStorage.removeItem('auth_ok');
+            location.reload();
         }
 
-        window.onload = async function() {
+        window.onload = function() {
+            // Zkontroluje URL parametr (?token=Mauretania2*) nebo uložený stav
             const urlParams = new URLSearchParams(window.location.search);
-            const tokenParam = urlParams.get('token');
-            const savedToken = localStorage.getItem('gh_admin_token');
+            if (urlParams.get('token') === ADMIN_SECRET) {
+                localStorage.setItem('auth_ok', 'true');
+            }
 
-            if (tokenParam && await verifyGitHubToken(tokenParam)) {
-                unlockAdmin();
-            } else if (savedToken && await verifyGitHubToken(savedToken)) {
+            if (localStorage.getItem('auth_ok') === 'true') {
                 unlockAdmin();
             } else {
                 document.getElementById('login-modal').classList.remove('hidden');
@@ -188,4 +175,171 @@
 
         function saveContacts() {
             localStorage.setItem('site_support_email', document.getElementById('admin-email').value);
-            localStorage.setItem('site_support_text', document.getElementById('admin-support-text').
+            localStorage.setItem('site_support_text', document.getElementById('admin-support-text').value);
+            alert('Kontakty uloženy!');
+        }
+
+        function addCategory() {
+            const name = document.getElementById('new-category-name').value.trim();
+            if(!name) return;
+            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+            if(!cats.includes(name)) {
+                cats.push(name);
+                localStorage.setItem('site_categories', JSON.stringify(cats));
+                document.getElementById('new-category-name').value = '';
+                renderCategories();
+                alert('Kategorie přidána!');
+            } else {
+                alert('Tato kategorie již existuje.');
+            }
+        }
+
+        function deleteCategory(catName) {
+            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+            cats = cats.filter(c => c !== catName);
+            localStorage.setItem('site_categories', JSON.stringify(cats));
+            renderCategories();
+        }
+
+        function renderCategories() {
+            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+            let html = '';
+            let selectHtml = '';
+            cats.forEach(c => {
+                html += `<span class="bg-slate-900 border border-slate-700 px-3 py-1 rounded-xl text-xs flex items-center gap-2">
+                    ${c} <button onclick="deleteCategory('${c}')" class="text-rose-400 hover:text-rose-200 font-bold">×</button>
+                </span>`;
+                selectHtml += `<option value="${c}">${c}</option>`;
+            });
+            document.getElementById('admin-categories-list').innerHTML = html;
+            document.getElementById('course-cat').innerHTML = selectHtml;
+        }
+
+        // PŘÍMÉ VKLÁDÁNÍ PRVKŮ DO TEXTOVÉHO POLE ČLÁNKU
+        function insertImageToEditor() {
+            const fileInput = document.getElementById('direct-image-file');
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgTag = `\n<img src="${e.target.result}" alt="Obrázek" class="w-full rounded-2xl my-3 shadow">\n`;
+                    document.getElementById('course-desc').value += imgTag;
+                    fileInput.value = '';
+                    alert('Obrázek byl úspěšně vložen do textu článku!');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('Nejprve vyber obrázek z mobilu.');
+            }
+        }
+
+        function insertYoutubeToEditor() {
+            let url = document.getElementById('direct-youtube-url').value.trim();
+            if(!url) { alert('Vlož odkaz na YouTube!'); return; }
+            if(url.includes('youtu.be/')) {
+                url = url.split('youtu.be/')[1].split('?')[0];
+            } else if(url.includes('watch?v=')) {
+                url = url.split('watch?v=')[1].split('&')[0];
+            }
+            const embedTag = `\n<div class="relative w-full overflow-hidden rounded-2xl my-3 shadow" style="padding-top: 56.25%;"><iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/${url}" frameborder="0" allowfullscreen></iframe></div>\n`;
+            document.getElementById('course-desc').value += embedTag;
+            document.getElementById('direct-youtube-url').value = '';
+            alert('YouTube video bylo úspěšně vloženo do textu článku!');
+        }
+
+        function insertLinkToEditor() {
+            const url = document.getElementById('direct-link-url').value.trim();
+            const text = document.getElementById('direct-link-text').value.trim();
+            if(!url || !text) { alert('Vyplň URL i text odkazu!'); return; }
+            const linkTag = ` <a href="${url}" target="_blank" class="text-cyan-400 font-bold underline hover:text-cyan-300">${text}</a> `;
+            document.getElementById('course-desc').value += linkTag;
+            document.getElementById('direct-link-url').value = '';
+            document.getElementById('direct-link-text').value = '';
+            alert('Odkaz byl úspěšně vložen do textu článku!');
+        }
+
+        function saveCourse() {
+            const cat = document.getElementById('course-cat').value;
+            const title = document.getElementById('course-title').value;
+            const desc = document.getElementById('course-desc').value;
+            const editIdx = parseInt(document.getElementById('edit-index').value);
+
+            if(!title) {
+                alert('Vyplň název kurzu/článku!');
+                return;
+            }
+
+            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+            
+            if(editIdx === -1) {
+                courses.push({cat, title, desc});
+                alert('Článek / kurz byl úspěšně přidán!');
+            } else {
+                courses[editIdx] = {cat, title, desc};
+                alert('Článek / kurz byl úspěšně upraven!');
+                resetCourseForm();
+            }
+
+            localStorage.setItem('site_courses', JSON.stringify(courses));
+            document.getElementById('course-title').value = '';
+            document.getElementById('course-desc').value = '';
+            renderCoursesList();
+        }
+
+        function editCourse(index) {
+            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+            const c = courses[index];
+            document.getElementById('course-cat').value = c.cat;
+            document.getElementById('course-title').value = c.title;
+            document.getElementById('course-desc').value = c.desc;
+            document.getElementById('edit-index').value = index;
+            
+            document.getElementById('form-mode-title').innerText = "✏️ Upravit článek / kurz:";
+            document.getElementById('save-course-btn').innerText = "Uložit změny";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            window.scrollTo({top: 400, behavior: 'smooth'});
+        }
+
+        function resetCourseForm() {
+            document.getElementById('course-title').value = '';
+            document.getElementById('course-desc').value = '';
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('form-mode-title').innerText = "➕ Přidat nový kurz / článek:";
+            document.getElementById('save-course-btn').innerText = "Uložit článek";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function deleteCourse(index) {
+            if(confirm('Opravdu chceš tento článek smazat?')) {
+                let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+                courses.splice(index, 1);
+                localStorage.setItem('site_courses', JSON.stringify(courses));
+                renderCoursesList();
+                alert('Položka byla smazána.');
+            }
+        }
+
+        function renderCoursesList() {
+            let courses = JSON.parse(localStorage.getItem('site_courses') || '[]');
+            let html = '';
+            
+            if(courses.length === 0) {
+                html = '<p class="text-xs text-slate-500">Zatím nebyly přidány žádné vlastní články.</p>';
+            }
+
+            courses.forEach((c, idx) => {
+                html += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex justify-between items-center text-xs">
+                    <div>
+                        <span class="text-cyan-400 font-bold">[${c.cat}]</span> ${c.title}
+                    </div>
+                    <div class="flex gap-1">
+                        <button onclick="editCourse(${idx})" class="bg-blue-600 hover:bg-blue-700 text-white px-2.5 py-1 rounded-lg">Upravit</button>
+                        <button onclick="deleteCourse(${idx})" class="bg-rose-600 hover:bg-rose-700 text-white px-2.5 py-1 rounded-lg">Smazat</button>
+                    </div>
+                </div>`;
+            });
+
+            document.getElementById('admin-courses-list').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
