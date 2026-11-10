@@ -8,7 +8,7 @@
 </head>
 <body class="bg-slate-900 text-white font-sans antialiased min-h-screen p-4 pb-24">
 
-    <!-- LOGIN MODAL (Zobrazeno dokud není token platný) -->
+    <!-- LOGIN MODAL -->
     <div id="login-modal" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
         <div class="bg-slate-800 p-6 rounded-3xl max-w-sm w-full border border-slate-700 space-y-4 shadow-2xl text-center">
             <h2 class="text-lg font-black text-cyan-400">🔒 GitHub Přihlášení</h2>
@@ -112,7 +112,6 @@
     </div>
 
     <script>
-        // Automatické ověření přes GitHub API
         async function verifyGitHubToken(token) {
             if (!token) return false;
             try {
