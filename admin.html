@@ -53,7 +53,7 @@
         <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-3">
             <h2 class="font-bold text-sm text-cyan-300">📁 Správa kategorií</h2>
             <div class="flex gap-2">
-                <input type="text" id="new-category-name" placeholder="Nová kategorie..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+                <input type="text" id="new-category-name" placeholder="Nová kategorie (např. Tablet, Bezpečnost)..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
                 <button onclick="addCategory()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-sm whitespace-nowrap">Přidat</button>
             </div>
             <div id="admin-categories-list" class="flex flex-wrap gap-2 pt-2"></div>
@@ -67,9 +67,12 @@
                 <p class="text-xs text-cyan-400 font-bold" id="form-mode-title">➕ Přidat nový kurz / článek:</p>
                 <input type="hidden" id="edit-index" value="-1">
                 
-                <select id="course-cat" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
-                    <option value="Základy">Základy</option>
-                </select>
+                <div>
+                    <label class="text-[11px] text-slate-400 block mb-1">Vyber kategorii:</label>
+                    <select id="course-cat" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
+                        <option value="Základy">Základy</option>
+                    </select>
+                </div>
                 
                 <input type="text" id="course-title" placeholder="Název kurzu / článku" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white">
                 
@@ -179,24 +182,26 @@
 
         function addCategory() {
             const name = document.getElementById('new-category-name').value.trim();
-            if(!name) return;
+            if(!name) { alert('Zadej název kategorie!'); return; }
             let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
             if(!cats.includes(name)) {
                 cats.push(name);
                 localStorage.setItem('site_categories', JSON.stringify(cats));
                 document.getElementById('new-category-name').value = '';
                 renderCategories();
-                alert('Kategorie přidána!');
+                alert('Kategorie byla úspěšně přidána!');
             } else {
                 alert('Tato kategorie již existuje.');
             }
         }
 
         function deleteCategory(catName) {
-            let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
-            cats = cats.filter(c => c !== catName);
-            localStorage.setItem('site_categories', JSON.stringify(cats));
-            renderCategories();
+            if(confirm(`Opravdu chceš smazat kategorii "${catName}"?`)) {
+                let cats = JSON.parse(localStorage.getItem('site_categories') || '["Základy", "Internet", "Smartphone"]');
+                cats = cats.filter(c => c !== catName);
+                localStorage.setItem('site_categories', JSON.stringify(cats));
+                renderCategories();
+            }
         }
 
         function renderCategories() {
@@ -204,8 +209,8 @@
             let html = '';
             let selectHtml = '';
             cats.forEach(c => {
-                html += `<span class="bg-slate-900 border border-slate-700 px-3 py-1 rounded-xl text-xs flex items-center gap-2">
-                    ${c} <button onclick="deleteCategory('${c}')" class="text-rose-400 hover:text-rose-200 font-bold">×</button>
+                html += `<span class="bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
+                    ${c} <button onclick="deleteCategory('${c}')" class="text-rose-400 hover:text-rose-200 font-bold ml-1">×</button>
                 </span>`;
                 selectHtml += `<option value="${c}">${c}</option>`;
             });
@@ -340,4 +345,3 @@
         }
     </script>
 </body>
-</html>
