@@ -7,7 +7,7 @@ Statický web pro GitHub Pages. Obsahuje 12 kapitol a 36 lekcí, vyhledávání,
 - Sekce užitečných externích odkazů.
 - Sekce video návodů s odkazy na vyhledávání na YouTube.
 - Kniha návštěv – prozatím pouze lokální pracovní ukázka: vzkazy se ukládají v localStorage konkrétního prohlížeče a nejsou veřejně sdílené.
-- TOPlist měření s ID 1844009 v patičce webu.
+- TOPlist počítadlo ve vzhledu counter s ID 1699528 v patičce webu.
 - Administrativní pracovní stránka admin.html pro export/import studijních dat; není to zabezpečená serverová administrace.
 
 ## Omezení statického hostingu
