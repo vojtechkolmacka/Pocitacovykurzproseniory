@@ -7,14 +7,14 @@ Statický web pro GitHub Pages. Obsahuje 12 kapitol a 36 lekcí, vyhledávání,
 - Sekce užitečných externích odkazů.
 - Sekce video návodů s odkazy na vyhledávání na YouTube.
 - Kniha návštěv – prozatím pouze lokální pracovní ukázka: vzkazy se ukládají v localStorage konkrétního prohlížeče a nejsou veřejně sdílené.
-- TOPlist měřicí počítadlo ve vzhledu counter s ID 1844009 a informační panel 88 × 120 px (celkem, poslední týden, dnes a online) v patičce. Panel pouze zobrazuje statistiky; návštěvy zaznamenává samostatný měřicí kód.
+- Stats4U měřicí skript s ID 8921010876 a stylem 3300 v patičce; odkaz na stránku statistik: https://www.stats4u.net/live/8921010876.
 - Administrativní pracovní stránka admin.html pro export/import studijních dat; není to zabezpečená serverová administrace.
 
 ## Omezení statického hostingu
-GitHub Pages neumí sám bezpečně ukládat společné vzkazy, centrálně spravovat odkazy/reklamy ani počítat vlastní návštěvnost. TOPlist měří návštěvnost externě. Pro veřejnou knihu návštěv a centrální správu je nutný backend nebo externí služba s autentizací a pravidly přístupu.
+GitHub Pages neumí sám bezpečně ukládat společné vzkazy, centrálně spravovat odkazy/reklamy ani počítat vlastní návštěvnost. Stats4U měří návštěvnost externě. Pro veřejnou knihu návštěv a centrální správu je nutný backend nebo externí služba s autentizací a pravidly přístupu.
 
 ## Nasazení
-Nahrajte obsah této složky do kořene repozitáře GitHub Pages. Zachovejte soubory CNAME a původní bannery. Po nasazení otestujte mobilní i desktopové zobrazení, odkazy, TOPlist a PWA.
+Nahrajte obsah této složky do kořene repozitáře GitHub Pages. Zachovejte soubory CNAME a původní bannery. Po nasazení otestujte mobilní i desktopové zobrazení, odkazy, Stats4U a PWA.
 
 ## Bezpečnost a soukromí
 Nepřidávejte hesla ani tajné klíče do veřejných JavaScriptových souborů. Kniha návštěv v této verzi není veřejná a lokální záznamy se mohou ztratit při vymazání dat prohlížeče.
