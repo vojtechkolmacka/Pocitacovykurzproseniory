@@ -1,27 +1,20 @@
-# Naučím vás s počítačem – průvodce pro seniory
+# Naučím vás s počítačem – pracovní verze
 
-Statická vzdělávací webová aplikace určená pro GitHub Pages.
+Statický web pro GitHub Pages. Obsahuje 12 kapitol a 36 lekcí, vyhledávání, slovníček, kvízy, ukládání studijního pokroku v prohlížeči, nastavení čitelnosti, PWA manifest a základní offline cache.
 
-## Obsah
-- 12 kapitol a 36 samostatných lekcí (3 lekce v každé kapitole)
-- vyhledávání v obsahu kurzu
-- slovníček základních pojmů
-- kontrolní otázky s okamžitým vyhodnocením
-- lokální označování dokončených lekcí
-- ovládání velikosti písma, vysoký kontrast a tmavý režim
-- PWA manifest a service worker pro základní offline dostupnost
-- zachované doménové nastavení v souboru `CNAME` a původní bannery
+## Funkce dostupné bez backendu
+- Reklamní plocha na úvodní stránce (zatím obecná nabídka reklamního prostoru, ne aktivní kampaň konkrétního inzerenta).
+- Sekce užitečných externích odkazů.
+- Sekce video návodů s odkazy na vyhledávání na YouTube.
+- Kniha návštěv – prozatím pouze lokální pracovní ukázka: vzkazy se ukládají v localStorage konkrétního prohlížeče a nejsou veřejně sdílené.
+- TOPlist měření s ID 1844009 v patičce webu.
+- Administrativní pracovní stránka admin.html pro export/import studijních dat; není to zabezpečená serverová administrace.
+
+## Omezení statického hostingu
+GitHub Pages neumí sám bezpečně ukládat společné vzkazy, centrálně spravovat odkazy/reklamy ani počítat vlastní návštěvnost. TOPlist měří návštěvnost externě. Pro veřejnou knihu návštěv a centrální správu je nutný backend nebo externí služba s autentizací a pravidly přístupu.
 
 ## Nasazení
-1. Nahrajte všechny soubory a složky do kořene repozitáře.
-2. V GitHubu otevřete Settings → Pages.
-3. Zkontrolujte, že zdrojem je větev `main` a složka `/ (root)`.
-4. Po nasazení ověřte vlastní doménu a HTTPS.
+Nahrajte obsah této složky do kořene repozitáře GitHub Pages. Zachovejte soubory CNAME a původní bannery. Po nasazení otestujte mobilní i desktopové zobrazení, odkazy, TOPlist a PWA.
 
-## Důležitá technická omezení
-Tato verze je statická aplikace. Pokrok v lekcích se ukládá do `localStorage` konkrétního prohlížeče a nesynchronizuje se mezi zařízeními. Administrace v `admin.html` je pouze lokální pracovní pomůcka pro export/import dat; není to centrální CMS.
-
-Pro bezpečnou administraci, společné ukládání obsahu a knihy návštěv je potřeba doplnit backend a autentizaci (například Firebase nebo Supabase) a nastavit bezpečnostní pravidla. Heslo nesmí být uložené ve veřejném JavaScriptu.
-
-## Obsah a přesnost
-Názvy nabídek Windows a mobilních systémů se mohou lišit podle verze a výrobce. Před veřejným spuštěním doporučujeme redakční kontrolu postupů na skutečných zařízeních a doplnění aktuálních fotografií/snímků obrazovky. Použité bannery jsou převzaté z původního projektu.
+## Bezpečnost a soukromí
+Nepřidávejte hesla ani tajné klíče do veřejných JavaScriptových souborů. Kniha návštěv v této verzi není veřejná a lokální záznamy se mohou ztratit při vymazání dat prohlížeče.

@@ -1,4 +1,4 @@
-const CACHE='pc-seniori-v1';
+const CACHE='pc-seniori-v2';
 const CORE=['./','./index.html','./styles.css','./app.js','./lessons.js','./glossary.js','./manifest.webmanifest','./assets/icon.svg','./banner-pc.png','./banner-mobil.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
